@@ -132,6 +132,12 @@ HTML = """<!DOCTYPE html>
   .row .mid .line2{font-size:13px;color:var(--ink);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap;}
   .row .mid .line2 span{white-space:nowrap;}
   .row .mid .srctag{font-size:10px;font-weight:600;color:var(--brown2);background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:1px 7px;letter-spacing:.3px;text-transform:uppercase;}
+  /* Status hashtags shown on every card/row */
+  .htag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.2px;margin-right:4px;}
+  .htag.date{background:#eef3f8;color:#3c5a78;border:1px solid #d6e1ec;}
+  .htag.ok{background:#e7f5e8;color:var(--good);border:1px solid #cfe6cf;}
+  .htag.unknown{background:#fdf6ee;color:var(--brown2);border:1px solid #ecdec7;}
+  .tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 8px;}
   .row .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:12px;}
   .row .right .m{font-size:14px;font-weight:700;color:var(--brown);}
   .row .right .c-ok{color:var(--good);font-weight:600;}
@@ -239,6 +245,12 @@ function gv(arr,key){for(var i=0;i<arr.length;i++){if(arr[i][0]==key)return arr[
 function gunNum(g){var m=(g||"").match(/([\\d.]+)/);return m?parseFloat(m[1]):0;}
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function kvtable(arr){var r="<table class='kv'>";arr.forEach(function(p){if(p[1])r+="<tr><td class='k'>"+esc(p[0])+"</td><td>"+esc(p[1])+"</td></tr>";});return r+"</table>";}
+function fmtDate(iso){if(!iso)return "";var d=new Date(iso+"T00:00:00");if(isNaN(d))return iso;return d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});}
+function statusTags(p){
+  var dt=p.firstSeen?"<span class='htag date'>#received "+esc(fmtDate(p.firstSeen))+"</span>":"";
+  var st=p.contact?"<span class='htag ok'>#accepted</span>":"<span class='htag unknown'>#unknown</span>";
+  return "<div class='tags'>"+dt+st+"</div>";
+}
 
 function card(p){
   var a=age(gv(p.details,"Date Of Birth"));
@@ -276,6 +288,7 @@ function card(p){
     "<div class='body'>"+
       "<p class='nm'>"+esc(p.surname)+"</p>"+
       "<p class='rg'>"+p.regno+" · DOB "+esc(gv(p.details,"Date Of Birth"))+"</p>"+
+      statusTags(p)+
       "<div class='chips'>"+chips.map(function(c){return "<span class='chip'>"+esc(c)+"</span>";}).join("")+"</div>"+
       (oc?"<div style='font-size:13px;margin-bottom:8px'>💼 "+esc(oc)+"</div>":"")+
       "<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+" <span style='color:var(--muted)'>(hover for breakdown)</span></div>"+
@@ -307,6 +320,7 @@ function row(p){
       "<div class='top'><span class='nm'>"+esc(p.surname||"(no name)")+"</span>"+srcTag+"</div>"+
       "<div class='meta'>"+esc(p.regno)+" · "+meta.join(" · ")+"</div>"+
       (line2.length?"<div class='line2'>"+line2.join("")+"</div>":"")+
+      statusTags(p)+
       "<div class='meta'>★ "+esc(p.gun)+" · "+contact+"</div>"+
     "</div>"+
     "<div class='right'>"+
