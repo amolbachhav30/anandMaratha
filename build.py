@@ -136,7 +136,14 @@ HTML = """<!DOCTYPE html>
   .htag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.2px;margin-right:4px;}
   .htag.date{background:#eef3f8;color:#3c5a78;border:1px solid #d6e1ec;}
   .htag.ok{background:#e7f5e8;color:var(--good);border:1px solid #cfe6cf;}
+  .htag.bad{background:#fce9e9;color:#9c2727;border:1px solid #f0caca;}
+  .htag.pending{background:#fdf6dc;color:#876d12;border:1px solid #ecd99a;}
   .htag.unknown{background:#fdf6ee;color:var(--brown2);border:1px solid #ecdec7;}
+  .htag.dir{background:#ece6f5;color:#5c4480;border:1px solid #d4c8e6;}
+  .reason{background:#fce9e9;border:1px solid #f0caca;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:#7a1f1f;}
+  .reason b{color:#9c2727;}
+  .statusbox{background:#e7f5e8;border:1px solid #cfe6cf;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--good);}
+  .pendingbox{background:#fdf6dc;border:1px solid #ecd99a;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:#876d12;}
   .tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 8px;}
   .row .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:12px;}
   .row .right .m{font-size:14px;font-weight:700;color:var(--brown);}
@@ -248,18 +255,37 @@ function kvtable(arr){var r="<table class='kv'>";arr.forEach(function(p){if(p[1]
 function fmtDate(iso){if(!iso)return "";var d=new Date(iso+"T00:00:00");if(isNaN(d))return iso;return d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});}
 function statusTags(p){
   var dt=p.firstSeen?"<span class='htag date'>#received "+esc(fmtDate(p.firstSeen))+"</span>":"";
-  var st=p.contact?"<span class='htag ok'>#accepted</span>":"<span class='htag unknown'>#unknown</span>";
-  return "<div class='tags'>"+dt+st+"</div>";
+  var dir=p.direction?"<span class='htag dir'>#"+esc(p.direction)+"</span>":"";
+  var st;
+  if(p.status==='accepted')st="<span class='htag ok'>#accepted</span>";
+  else if(p.status==='declined')st="<span class='htag bad'>#declined</span>";
+  else if(p.status==='pending')st="<span class='htag pending'>#pending</span>";
+  else st=p.contact?"<span class='htag ok'>#accepted</span>":"<span class='htag unknown'>#unknown</span>";
+  return "<div class='tags'>"+dt+dir+st+"</div>";
+}
+function statusBox(p){
+  if(p.contact)return null; // handled by contact rendering
+  if(p.status==='declined'){
+    return "<div class='reason'><b>Declined</b>"+(p.statusDate?" on "+esc(p.statusDate):"")+(p.declineReason?"<div>Reason: "+esc(p.declineReason)+"</div>":"")+"</div>";
+  }
+  if(p.status==='accepted'){
+    return "<div class='statusbox'><b>✓ Accepted</b>"+(p.statusDate?" on "+esc(p.statusDate):"")+"<div>View full profile on source site for contact details.</div></div>";
+  }
+  if(p.status==='pending'){
+    return "<div class='pendingbox'><b>⏳ Pending</b>"+(p.statusDate?" — "+esc(p.statusDate):"")+"</div>";
+  }
+  return null;
 }
 
 function card(p){
   var a=age(gv(p.details,"Date Of Birth"));
   var chips=[];
-  if(a)chips.push(a+" yrs");
+  if(a){chips.push(a+" yrs");}
+  else { var ageStr=gv(p.details,"Age"); if(ageStr)chips.push(ageStr); }
   var h=gv(p.details,"Height"); if(h)chips.push(h);
   var ed=gv(p.details,"Education"); if(ed)chips.push(ed.length>22?ed.slice(0,22)+"…":ed);
   var oc=gv(p.details,"Occupation");
-  var loc=gv(p.family,"Parents Residing In"); if(loc)chips.push("📍"+loc);
+  var loc=gv(p.family,"Parents Residing In")||gv(p.details,"Location"); if(loc)chips.push("📍"+loc);
   var photoHtml="";
   var ph=p.photos&&p.photos.length?p.photos:["https://www.anandmaratha.com/no_imgf.jpg"];
   ph.forEach(function(u,i){photoHtml+="<img data-i='"+i+"' src='"+u+"' style='"+(i?"display:none":"")+"' onerror=\\"this.onerror=null;this.src='https://www.anandmaratha.com/no_imgf.jpg'\\"/>";});
@@ -280,7 +306,8 @@ function card(p){
       (c.email?"<div>📧 <a href='mailto:"+esc(c.email)+"'>"+esc(c.email)+"</a></div>":"")+
       "</div>";
   } else {
-    contactHtml="<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap the green <b>INTERESTED</b> button — contact details will arrive by email.</div>";
+    var sb=statusBox(p);
+    contactHtml=sb||"<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap the green <b>INTERESTED</b> button — contact details will arrive by email.</div>";
   }
   var srcTag=p.source?"<span class='src'>"+esc(p.source)+"</span>":"";
   return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"' data-source='"+esc(p.source||"")+"'>"+
