@@ -219,14 +219,35 @@ async function tryUnlock(pw){
     const jsonText=new TextDecoder().decode(plain);
     DB=JSON.parse(jsonText);P=DB.profiles;
     sessionStorage.setItem('am_data',jsonText);
-    reveal();
+    sessionStorage.setItem('am_salt',SALT_B64);
+    sessionStorage.setItem('am_pw',pw);
+    showApp();
     return true;
   }catch(e){return false;}
 }
-function reveal(){
-  if(!DB){const cached=sessionStorage.getItem('am_data');if(cached){DB=JSON.parse(cached);P=DB.profiles;}else{return;}}
+function showApp(){
   document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';
   populateSources();setView(currentView());stats();bindControls();
+}
+async function reveal(){
+  // Try cached data only if the encrypted blob hasn't changed since we cached.
+  const cached=sessionStorage.getItem('am_data');
+  const cachedSalt=sessionStorage.getItem('am_salt');
+  if(cached && cachedSalt===SALT_B64){
+    DB=JSON.parse(cached);P=DB.profiles;
+    showApp();
+    return;
+  }
+  // Stale or no cache. Try cached password to silently re-decrypt the new build.
+  const cachedPw=sessionStorage.getItem('am_pw');
+  if(cachedPw){
+    const ok=await tryUnlock(cachedPw);
+    if(ok)return;
+    sessionStorage.removeItem('am_pw');
+  }
+  // Otherwise clear stale cache and fall back to gate.
+  sessionStorage.removeItem('am_data');
+  sessionStorage.removeItem('am_salt');
 }
 function bindControls(){
   document.getElementById('q').addEventListener('input',render);
@@ -246,7 +267,7 @@ async function submitPw(){
     document.getElementById('err').textContent='Wrong passcode';document.getElementById('pw').value='';
   }
 }
-if(sessionStorage.getItem('am_data'))reveal();
+if(sessionStorage.getItem('am_data')||sessionStorage.getItem('am_pw'))reveal();
 function age(dob){var m=dob.match(/(\\d{2})\\/(\\d{2})\\/(\\d{4})/);if(!m)return null;var d=new Date(m[3],m[2]-1,m[1]);var t=new Date();var a=t.getFullYear()-d.getFullYear();if(t.getMonth()<d.getMonth()||(t.getMonth()==d.getMonth()&&t.getDate()<d.getDate()))a--;return a;}
 function gv(arr,key){for(var i=0;i<arr.length;i++){if(arr[i][0]==key)return arr[i][1];}return "";}
 function gunNum(g){var m=(g||"").match(/([\\d.]+)/);return m?parseFloat(m[1]):0;}
