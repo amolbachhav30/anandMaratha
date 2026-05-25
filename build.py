@@ -41,7 +41,9 @@ HTML = """<!DOCTYPE html>
   *{box-sizing:border-box;}
   body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;}
   header{background:linear-gradient(to right,var(--brown),var(--brown2));color:#fff;padding:22px 26px;}
-  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.2px;}
+  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.2px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  header h1 .gear{background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;line-height:1;flex-shrink:0;}
+  header h1 .gear:hover{background:rgba(255,255,255,.35);}
   header p{margin:4px 0 0;opacity:.9;font-size:13px;}
   .wrap{max-width:1180px;margin:0 auto;padding:20px 18px 60px;}
   .stats{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0;}
@@ -163,6 +165,34 @@ HTML = """<!DOCTYPE html>
   .reason b{color:#9c2727;}
   .statusbox{background:#e7f5e8;border:1px solid #cfe6cf;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--good);}
   .pendingbox{background:#fdf6dc;border:1px solid #ecd99a;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:#876d12;}
+  /* CRM editor inside modal */
+  .crm-edit{background:#f6f2ed;border-radius:10px;padding:12px 14px;margin-top:14px;}
+  .crm-edit label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:8px 0 4px;}
+  .crm-edit input,.crm-edit textarea,.crm-edit select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff;font-family:inherit;}
+  .crm-edit textarea{min-height:60px;resize:vertical;}
+  .stage-radios{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .stage-radios label{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:20px;border:1px solid var(--line);background:#fff;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;color:var(--ink);}
+  .stage-radios label input{display:none;}
+  .stage-radios label.sel{background:var(--brown);color:#fff;border-color:var(--brown);}
+  .crm-history{margin-top:12px;font-size:12px;color:var(--ink);}
+  .crm-history li{margin-bottom:4px;list-style:none;padding-left:12px;border-left:2px solid var(--line);}
+  .crm-history li b{color:var(--brown2);}
+  .crm-save{margin-top:12px;display:flex;gap:8px;}
+  .crm-save button{flex:1;padding:10px;font-size:14px;font-weight:600;border:none;border-radius:8px;cursor:pointer;}
+  .crm-save .save{background:var(--brown);color:#fff;}
+  .crm-save .save[disabled]{background:var(--muted);cursor:wait;}
+  .crm-save .cancel{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  /* Settings modal reuses #modalBack/#modal styles; just need extras for inputs */
+  #settingsModal label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:14px 0 4px;}
+  #settingsModal input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:monospace;}
+  #settingsModal .actions{display:flex;gap:8px;margin-top:14px;}
+  #settingsModal button{flex:1;padding:10px;font-size:14px;font-weight:600;border:none;border-radius:8px;cursor:pointer;background:var(--brown);color:#fff;}
+  #settingsModal button.outline{background:#fff;color:var(--brown);border:1px solid var(--brown);}
+  #patStatus{font-size:13px;margin-top:10px;min-height:18px;}
+  #patStatus.ok{color:var(--good);}
+  #patStatus.err{color:#c0392b;}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:24px;font-size:14px;z-index:1100;opacity:0;transition:opacity .25s;pointer-events:none;}
+  #toast.on{opacity:1;}
   /* Modal */
   #modalBack{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto;}
   #modalBack.on{display:flex;}
@@ -219,7 +249,7 @@ HTML = """<!DOCTYPE html>
 </div>
 <div id="app">
 <header>
-  <h1>Anand Maratha — Profiles Who Expressed Interest</h1>
+  <h1><span>Anand Maratha — Profiles Who Expressed Interest</span><button class="gear" id="gearBtn" title="Settings">⚙</button></h1>
   <p>For __WHO__ · Updated __UPDATED__</p>
 </header>
 <div class="wrap">
@@ -271,6 +301,32 @@ HTML = """<!DOCTYPE html>
     <div class="mbody" id="mBody"></div>
   </div>
 </div>
+<div id="settingsBack" class="modalbg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:910;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto;" onclick="if(event.target.id==='settingsBack')closeSettings()">
+  <div id="settingsModal" style="background:#fff;border-radius:14px;max-width:520px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4);overflow:hidden;">
+    <div class="mhead">
+      <div><h2 style="margin:0;font-size:18px">Settings</h2><div class="sub">GitHub access for editing profile stages</div></div>
+      <button onclick="closeSettings()" aria-label="Close">×</button>
+    </div>
+    <div class="mbody">
+      <p style="font-size:13px;color:var(--muted);margin:0">A GitHub Personal Access Token lets you change stages from this dashboard. Stored only in your browser's localStorage.</p>
+      <label for="pat">Personal Access Token</label>
+      <input type="password" id="pat" placeholder="github_pat_..." autocomplete="off"/>
+      <p style="font-size:11px;color:var(--muted);margin:8px 0 0;line-height:1.5">
+        Create one at <a href="https://github.com/settings/personal-access-tokens" target="_blank" style="color:var(--brown)">github.com/settings/personal-access-tokens</a><br>
+        • Repository access: only <b>amolbachhav30/anandMaratha</b><br>
+        • Permissions: <b>Contents → Read &amp; Write</b><br>
+        • Expiration: pick what suits you (90 days is reasonable)
+      </p>
+      <div class="actions">
+        <button class="outline" onclick="testPat()">Test connection</button>
+        <button onclick="savePat()">Save</button>
+      </div>
+      <div id="patStatus"></div>
+      <p style="font-size:11px;color:var(--muted);margin-top:18px"><a href="#" onclick="event.preventDefault();clearPat()" style="color:#c0392b">Remove saved token</a></p>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
 <script>
 const ENC_B64 ="__ENC_B64__";
 const SALT_B64="__SALT_B64__";
@@ -523,7 +579,7 @@ function openModal(regno){
     });
     body+="</div>";
   }
-  // Status info at bottom
+  // Status info
   body+="<h4>Status</h4><div style='font-size:13px'>";
   if(p.direction)body+="Direction: <b>"+esc(p.direction)+"</b><br>";
   if(p.status)body+="Status: <b>"+esc(p.status)+"</b><br>";
@@ -531,6 +587,8 @@ function openModal(regno){
   if(p.firstSeen)body+="First seen: "+esc(p.firstSeen)+"<br>";
   if(p.declineReason)body+="Reason: "+esc(p.declineReason)+"<br>";
   body+="</div>";
+  // CRM editor at bottom
+  body+=buildCRMEditor(p);
   document.getElementById('mBody').innerHTML=body;
   document.getElementById('modalBack').classList.add('on');
 }
@@ -542,6 +600,178 @@ document.addEventListener('click',function(e){
   var b=e.target.closest('.btn-more');
   if(b && b.dataset.regno){openModal(b.dataset.regno);}
 });
+
+// ---------- Settings + GitHub API ----------
+var REPO='amolbachhav30/anandMaratha';
+function getPat(){return localStorage.getItem('am_gh_pat')||'';}
+function openSettings(){
+  document.getElementById('pat').value=getPat();
+  document.getElementById('patStatus').textContent='';
+  document.getElementById('patStatus').className='';
+  document.getElementById('settingsBack').style.display='flex';
+}
+function closeSettings(){document.getElementById('settingsBack').style.display='none';}
+async function testPat(){
+  var pat=document.getElementById('pat').value.trim();
+  var s=document.getElementById('patStatus');
+  if(!pat){s.textContent='Enter a token first.';s.className='err';return;}
+  s.textContent='Testing…';s.className='';
+  try{
+    var r=await fetch('https://api.github.com/repos/'+REPO,{headers:{Authorization:'token '+pat}});
+    if(!r.ok){s.textContent='Token rejected ('+r.status+'). Check scope: Contents read+write on '+REPO+'.';s.className='err';return;}
+    var j=await r.json();
+    s.textContent='✓ Token works. Repo: '+j.full_name+' ('+(j.permissions&&j.permissions.push?'write':'read-only')+').';
+    s.className=(j.permissions&&j.permissions.push)?'ok':'err';
+    if(!(j.permissions&&j.permissions.push)){s.textContent+=' Need write access for editing.';}
+  }catch(e){s.textContent='Network error: '+e.message;s.className='err';}
+}
+function savePat(){
+  var pat=document.getElementById('pat').value.trim();
+  if(!pat){localStorage.removeItem('am_gh_pat');toast('Token cleared');closeSettings();return;}
+  localStorage.setItem('am_gh_pat',pat);toast('Token saved');closeSettings();
+}
+function clearPat(){if(confirm('Remove saved GitHub token?')){localStorage.removeItem('am_gh_pat');toast('Removed');closeSettings();}}
+
+function toast(msg,kind){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=kind==='err'?'#9c2727':kind==='ok'?'#2e7d32':'var(--ink)';
+  t.classList.add('on');
+  clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on');},2800);
+}
+
+// UTF-8 safe base64
+function b64encode(str){return btoa(unescape(encodeURIComponent(str)));}
+function b64decode(b){return decodeURIComponent(escape(atob(b)));}
+
+async function ghGetFile(path){
+  var pat=getPat();if(!pat)throw new Error('No GitHub token. Open Settings first.');
+  var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path,{headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json'}});
+  if(!r.ok)throw new Error('GET '+path+': '+r.status);
+  var j=await r.json();
+  return {sha:j.sha, content:b64decode(j.content.replace(/\\n/g,''))};
+}
+async function ghPutFile(path, content, sha, message){
+  var pat=getPat();if(!pat)throw new Error('No GitHub token.');
+  var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+path,{
+    method:'PUT',
+    headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},
+    body:JSON.stringify({message:message, content:b64encode(content), sha:sha, branch:'main'})
+  });
+  if(!r.ok){var t=await r.text();throw new Error('PUT '+r.status+': '+t.substring(0,200));}
+  return r.json();
+}
+
+// Save a CRM change for one profile to GitHub.
+// Retries once on 409 (sha conflict).
+async function saveCRM(regno, stage, note, nextAction, dueDate, closedReason){
+  var pat=getPat();
+  if(!pat){toast('Add a GitHub token in Settings first','err');openSettings();return false;}
+  for(var attempt=0; attempt<2; attempt++){
+    try{
+      var file=await ghGetFile('data/profiles.json');
+      var db=JSON.parse(file.content);
+      var found=null;
+      for(var i=0;i<db.profiles.length;i++){if(db.profiles[i].regno===regno){found=db.profiles[i];break;}}
+      if(!found){toast('Profile '+regno+' not found in repo','err');return false;}
+      if(!found.crm)found.crm={stage:'interest',history:[],next_action:'',next_action_due:'',closed_reason:'',notes:''};
+      var today=new Date().toISOString().slice(0,10);
+      var prev=found.crm.stage||'interest';
+      if(stage!==prev || note){
+        found.crm.history=found.crm.history||[];
+        found.crm.history.push({date:today, from:prev, to:stage, note:note||''});
+      }
+      found.crm.stage=stage;
+      found.crm.next_action=nextAction||'';
+      found.crm.next_action_due=dueDate||'';
+      if(stage==='closed-no')found.crm.closed_reason=closedReason||found.crm.closed_reason||'';
+      var newContent=JSON.stringify(db,null,2)+'\\n';
+      await ghPutFile('data/profiles.json', newContent, file.sha, 'CRM: '+regno+' → '+stage);
+      // Update in-memory so UI reflects immediately
+      for(var k=0;k<P.length;k++){if(P[k].regno===regno){P[k]=found;break;}}
+      return true;
+    }catch(e){
+      if(attempt===0 && /409|conflict/i.test(e.message)){continue;}
+      console.error('saveCRM',e);toast('Save failed: '+e.message,'err');return false;
+    }
+  }
+  return false;
+}
+
+// ---------- CRM Editor inside the profile modal ----------
+function buildCRMEditor(p){
+  var cur=stageOf(p);
+  var crm=p.crm||{stage:cur,history:[],next_action:'',next_action_due:'',closed_reason:'',notes:''};
+  var stages=STAGE_ORDER;
+  var radios=stages.map(function(s){
+    var sel=(s===cur)?'sel':'';
+    return "<label class='"+sel+"' data-s='"+s+"'><input type='radio' name='crm-stage' value='"+s+"' "+(s===cur?'checked':'')+"/>"+STAGE_LABEL[s]+"</label>";
+  }).join('');
+  var hist=(crm.history||[]).slice().reverse().slice(0,8).map(function(h){
+    return "<li><b>"+esc(h.date||'')+"</b> "+esc(h.from||'')+" → "+esc(h.to||'')+(h.note?": "+esc(h.note):"")+"</li>";
+  }).join('');
+  var closedRow=(cur==='closed-no')?"<label>Closed reason</label><input id='crmReason' value='"+esc(crm.closed_reason||'')+"' placeholder='e.g. Sub-caste mismatch, location, family said no'/>":"";
+  return "<div class='crm-edit'>"+
+    "<h4 style='margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)'>CRM stage</h4>"+
+    "<div class='stage-radios' id='crmStages'>"+radios+"</div>"+
+    closedRow+
+    "<label>Note (optional)</label>"+
+    "<textarea id='crmNote' placeholder='What happened? e.g. Spoke to her father 15 min'></textarea>"+
+    "<label>Next action</label>"+
+    "<input id='crmNext' value='"+esc(crm.next_action||'')+"' placeholder='e.g. Send our family photos'/>"+
+    "<label>Due date</label>"+
+    "<input id='crmDue' type='date' value='"+esc(crm.next_action_due||'')+"'/>"+
+    "<div class='crm-save'>"+
+      "<button class='cancel' onclick='closeModal()'>Cancel</button>"+
+      "<button class='save' id='crmSave' data-regno='"+esc(p.regno)+"'>Save</button>"+
+    "</div>"+
+    (hist?"<h4 style='margin:14px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)'>History</h4><ul class='crm-history'>"+hist+"</ul>":"")+
+  "</div>";
+}
+
+// Hook stage radio toggle styling
+document.addEventListener('change',function(e){
+  if(e.target&&e.target.name==='crm-stage'){
+    var radios=document.querySelectorAll('#crmStages label');
+    radios.forEach(function(l){l.classList.toggle('sel', l.querySelector('input').checked);});
+    // Toggle closed-reason input visibility
+    var openVal=e.target.value;
+    var reasonEl=document.getElementById('crmReason');
+    if(openVal==='closed-no' && !reasonEl){
+      var stages=document.getElementById('crmStages');
+      var lbl=document.createElement('label');lbl.textContent='Closed reason';
+      var inp=document.createElement('input');inp.id='crmReason';inp.placeholder='Sub-caste, location, family said no, …';
+      stages.parentNode.insertBefore(lbl, stages.nextSibling);
+      stages.parentNode.insertBefore(inp, lbl.nextSibling);
+    } else if(openVal!=='closed-no' && reasonEl){
+      reasonEl.previousElementSibling.remove();
+      reasonEl.remove();
+    }
+  }
+});
+
+// Hook save button
+document.addEventListener('click',async function(e){
+  var btn=e.target.closest('#crmSave');
+  if(!btn)return;
+  btn.disabled=true;btn.textContent='Saving…';
+  var regno=btn.dataset.regno;
+  var stage=(document.querySelector('input[name=crm-stage]:checked')||{value:'interest'}).value;
+  var note=(document.getElementById('crmNote')||{value:''}).value.trim();
+  var nextAct=(document.getElementById('crmNext')||{value:''}).value.trim();
+  var due=(document.getElementById('crmDue')||{value:''}).value.trim();
+  var reason=(document.getElementById('crmReason')||{value:''}).value.trim();
+  var ok=await saveCRM(regno, stage, note, nextAct, due, reason);
+  if(ok){
+    toast('Saved. Live site updates in ~30s.','ok');
+    closeModal();
+    stats();render();  // reflect locally
+  } else {
+    btn.disabled=false;btn.textContent='Save';
+  }
+});
+
+document.getElementById('gearBtn').addEventListener('click',openSettings);
 
 function currentView(){return localStorage.getItem('am_view')||'card';}
 function setView(v){localStorage.setItem('am_view',v);Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.classList.toggle('on',b.getAttribute('data-v')===v);});render();}
