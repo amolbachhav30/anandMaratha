@@ -1,6 +1,13 @@
 # --- Secrets — never commit ---
 Secret.rtf
 secret.rtf
+Secret.rtfd/
+secret.rtfd/
+Secret.rtfd
+secret.rtfd
+*secret*.txt
+*secret*.json
+*credentials*
 .env
 .env.*
 *.pem
