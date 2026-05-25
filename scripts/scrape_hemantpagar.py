@@ -109,7 +109,7 @@ def parse_entries(page_html: str, direction: str, status_label: str) -> list:
                 "regno": regno,
                 "surname": "",  # not provided on listing
                 "mgid": regno,  # MV/MS/etc. ID is the canonical ID here
-                "source": "Hemant Pagar",
+                "source": "Maratha Shubh Lagna",
                 "link": f"{BASE}/memprofile.php?id={regno}&action=ei",
                 "match": 0,
                 "gun": "",
@@ -177,7 +177,7 @@ def merge_into_db(profiles: list, db_path: Path) -> tuple:
             db["profiles"].append(prof)
             added += 1
     sources = set(db.get("sources", []))
-    sources.add("Hemant Pagar")
+    sources.add("Maratha Shubh Lagna")
     db["sources"] = sorted(sources)
     db_path.write_text(json.dumps(db, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return added, updated
