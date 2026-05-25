@@ -310,15 +310,20 @@ function card(p){
     contactHtml=sb||"<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap the green <b>INTERESTED</b> button — contact details will arrive by email.</div>";
   }
   var srcTag=p.source?"<span class='src'>"+esc(p.source)+"</span>":"";
+  var matchBadge=(p.match>0)?"<span class='badge'>"+p.match+"% match</span>":"";
+  var displayName=p.surname?esc(p.surname):esc(p.regno);
+  var dob=gv(p.details,"Date Of Birth");
+  var subRg=p.regno+(dob?" · DOB "+esc(dob):"");
   return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"' data-source='"+esc(p.source||"")+"'>"+
-    "<div class='photoWrap'>"+photoHtml+srcTag+"<span class='badge'>"+p.match+"% match</span>"+contactedTag+navHtml+"</div>"+
+    "<div class='photoWrap'>"+photoHtml+srcTag+matchBadge+contactedTag+navHtml+"</div>"+
     "<div class='body'>"+
-      "<p class='nm'>"+esc(p.surname)+"</p>"+
-      "<p class='rg'>"+p.regno+" · DOB "+esc(gv(p.details,"Date Of Birth"))+"</p>"+
+      "<p class='nm'>"+displayName+"</p>"+
+      "<p class='rg'>"+subRg+"</p>"+
       statusTags(p)+
-      "<div class='chips'>"+chips.map(function(c){return "<span class='chip'>"+esc(c)+"</span>";}).join("")+"</div>"+
+      (chips.length?"<div class='chips'>"+chips.map(function(c){return "<span class='chip'>"+esc(c)+"</span>";}).join("")+"</div>":"")+
       (oc?"<div style='font-size:13px;margin-bottom:8px'>💼 "+esc(oc)+"</div>":"")+
-      "<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+" <span style='color:var(--muted)'>(hover for breakdown)</span></div>"+
+      (p.message?"<div style='font-size:13px;background:#f6f2ed;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-style:italic;color:var(--brown2)'>💬 "+esc(p.message)+"</div>":"")+
+      (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+" <span style='color:var(--muted)'>(hover for breakdown)</span></div>":"")+
       "<details><summary>Full profile, family &amp; expectations</summary>"+
         "<div class='sec'><h4>Profile Details</h4>"+kvtable(p.details)+"</div>"+
         "<div class='sec'><h4>Family Background</h4>"+kvtable(p.family)+"</div>"+
@@ -334,24 +339,31 @@ function show(w,n){w.querySelectorAll('img').forEach(function(im,i){im.style.dis
 
 function row(p){
   var a=age(gv(p.details,"Date Of Birth"));
+  if(!a){var ageStr=gv(p.details,"Age"); if(ageStr)a=null,ageStr=ageStr;}
   var h=gv(p.details,"Height"); var ed=gv(p.details,"Education"); var oc=gv(p.details,"Occupation");
-  var loc=gv(p.family,"Parents Residing In");
+  var loc=gv(p.family,"Parents Residing In")||gv(p.details,"Location");
   var ph=(p.photos&&p.photos.length?p.photos[0]:"https://www.anandmaratha.com/no_imgf.jpg");
-  var meta=[]; if(a)meta.push(a+" yrs"); if(h)meta.push(h); if(loc)meta.push("📍"+loc);
+  var meta=[]; if(a)meta.push(a+" yrs"); else { var aStr=gv(p.details,"Age"); if(aStr)meta.push(aStr); }
+  if(h)meta.push(h); if(loc)meta.push("📍"+loc);
   var line2=[]; if(ed)line2.push("<span>🎓 "+esc(ed)+"</span>"); if(oc)line2.push("<span>💼 "+esc(oc)+"</span>");
-  var contact=p.contact?"<span class='c-ok'>✓ "+esc(p.contact.name||"contact ready")+"</span>":"<span class='c-no'>awaiting interest</span>";
+  if(p.message)line2.push("<span style='font-style:italic;color:var(--brown2)'>💬 "+esc(p.message.length>80?p.message.slice(0,80)+"…":p.message)+"</span>");
+  var contact=p.contact?"<span class='c-ok'>✓ "+esc(p.contact.name||"contact ready")+"</span>":"";
   var srcTag=p.source?"<span class='srctag'>"+esc(p.source)+"</span>":"";
+  var displayName=p.surname?esc(p.surname):esc(p.regno);
+  var gunInline=p.gun?"★ "+esc(p.gun):"";
+  var bottom=[gunInline, contact].filter(Boolean).join(" · ");
+  var matchInline=(p.match>0)?p.match+"%":"";
   return "<div class='row' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-source='"+esc(p.source||"")+"'>"+
     "<div class='ph'><img src='"+ph+"' onerror=\\"this.onerror=null;this.src='https://www.anandmaratha.com/no_imgf.jpg'\\"/></div>"+
     "<div class='mid'>"+
-      "<div class='top'><span class='nm'>"+esc(p.surname||"(no name)")+"</span>"+srcTag+"</div>"+
-      "<div class='meta'>"+esc(p.regno)+" · "+meta.join(" · ")+"</div>"+
+      "<div class='top'><span class='nm'>"+displayName+"</span>"+srcTag+"</div>"+
+      "<div class='meta'>"+esc(p.regno)+(meta.length?" · "+meta.join(" · "):"")+"</div>"+
       (line2.length?"<div class='line2'>"+line2.join("")+"</div>":"")+
       statusTags(p)+
-      "<div class='meta'>★ "+esc(p.gun)+" · "+contact+"</div>"+
+      (bottom?"<div class='meta'>"+bottom+"</div>":"")+
     "</div>"+
     "<div class='right'>"+
-      "<div class='m'>"+p.match+"%</div>"+
+      (matchInline?"<div class='m'>"+matchInline+"</div>":"")+
       "<a href='"+p.link+"' target='_blank'>Open →</a>"+
     "</div>"+
   "</div>";
@@ -394,12 +406,15 @@ function populateSources(){
 }
 function stats(){
   var withC=P.filter(function(p){return p.contact;}).length;
-  var top=Math.max.apply(null,P.map(function(p){return p.match;}));
+  var bySource={};
+  P.forEach(function(p){var s=p.source||"(unknown)";bySource[s]=(bySource[s]||0)+1;});
+  var sourceHtml=Object.keys(bySource).sort().map(function(s){
+    return "<div class='stat'><b>"+bySource[s]+"</b><span>"+s+"</span></div>";
+  }).join("");
   document.getElementById('stats').innerHTML=
-    "<div class='stat'><b>"+P.length+"</b><span>Profiles</span></div>"+
-    "<div class='stat'><b>"+withC+"</b><span>Contact ready</span></div>"+
-    "<div class='stat'><b>"+(P.length-withC)+"</b><span>Awaiting interest</span></div>"+
-    "<div class='stat'><b>"+top+"%</b><span>Top match</span></div>";
+    "<div class='stat'><b>"+P.length+"</b><span>Total</span></div>"+
+    sourceHtml+
+    "<div class='stat'><b>"+withC+"</b><span>Contact ready</span></div>";
 }
 </script>
 </body>
