@@ -1484,7 +1484,12 @@
           ""
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "VAISHNAVI SHASHIRAJ PATIL (SADOLIKAR)",
+        "address": "KOLHAPUR KARVIR",
+        "phones": "9822778139, 8149750007",
+        "email": "vaishnavipatil77@gmail.com"
+      },
       "source": "Anand Maratha"
     },
     {
