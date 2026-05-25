@@ -387,7 +387,7 @@ function card(p){
       (p.message?"<div style='font-size:13px;background:#f6f2ed;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-style:italic;color:var(--brown2)'>💬 "+esc(p.message)+"</div>":"")+
       (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+"</div>":"")+
       contactHtml+
-      "<div class='actions'><button class='btn-more' onclick='openModal(\""+esc(p.regno)+"\")'>View details</button><a class='btn primary' href='"+p.link+"' target='_blank'>Open live →</a></div>"+
+      "<div class='actions'><button class='btn-more' data-regno='"+esc(p.regno)+"'>View details</button><a class='btn primary' href='"+p.link+"' target='_blank'>Open live →</a></div>"+
     "</div></div>";
 }
 function nav(btn,dir){var w=btn.closest('.photoWrap');var imgs=w.querySelectorAll('img');var dots=w.querySelectorAll('.dot');var cur=0;imgs.forEach(function(im,i){if(im.style.display!=='none')cur=i;});var n=(cur+dir+imgs.length)%imgs.length;show(w,n);}
@@ -421,7 +421,7 @@ function row(p){
     "</div>"+
     "<div class='right'>"+
       (matchInline?"<div class='m'>"+matchInline+"</div>":"")+
-      "<button class='btn-more' style='padding:4px 8px;font-size:11px' onclick='openModal(\""+esc(p.regno)+"\")'>Details</button>"+
+      "<button class='btn-more' data-regno='"+esc(p.regno)+"' style='padding:4px 8px;font-size:11px'>Details</button>"+
       "<a href='"+p.link+"' target='_blank'>Open →</a>"+
     "</div>"+
   "</div>";
@@ -457,7 +457,7 @@ function openModal(regno){
   if(p.photos&&p.photos.length>1){
     body+="<h4>Photos</h4><div style='display:flex;gap:6px;flex-wrap:wrap;'>";
     p.photos.forEach(function(u){
-      body+="<a href='"+u+"' target='_blank'><img src='"+u+"' style='width:80px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--line);' onerror=\"this.style.display='none'\"/></a>";
+      body+="<a href='"+u+"' target='_blank'><img src='"+u+"' style='width:80px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--line);' onerror=\\"this.style.display='none'\\"/></a>";
     });
     body+="</div>";
   }
@@ -476,6 +476,10 @@ function closeModal(){
   document.getElementById('modalBack').classList.remove('on');
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.btn-more');
+  if(b && b.dataset.regno){openModal(b.dataset.regno);}
+});
 
 function currentView(){return localStorage.getItem('am_view')||'card';}
 function setView(v){localStorage.setItem('am_view',v);Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.classList.toggle('on',b.getAttribute('data-v')===v);});render();}
