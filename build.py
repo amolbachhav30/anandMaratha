@@ -1,18 +1,34 @@
 #!/usr/bin/env python3
-"""Builds index.html from data/profiles.json for the Anand Maratha interested-profiles dashboard."""
-import json, os, datetime, base64
+"""Builds index.html from data/profiles.json for the Anand Maratha interested-profiles dashboard.
+
+Profile data is AES-256-GCM encrypted with the passcode (PBKDF2-HMAC-SHA256, 250k iters).
+The passcode is NOT shipped — only encrypted ciphertext + salt + IV.
+"""
+import json, os, datetime, base64, secrets
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data", "profiles.json")
 OUT = os.path.join(HERE, "index.html")
 PASSWORD = "134393"
+PBKDF2_ITERS = 250000
 
 with open(DATA, encoding="utf-8") as f:
     db = json.load(f)
 
 updated = datetime.datetime.now().strftime("%d %b %Y, %I:%M %p")
 data_js = json.dumps(db, ensure_ascii=False)
-data_b64 = base64.b64encode(data_js.encode("utf-8")).decode("ascii")
+
+salt = secrets.token_bytes(16)
+iv = secrets.token_bytes(12)
+key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=PBKDF2_ITERS).derive(PASSWORD.encode("utf-8"))
+ciphertext = AESGCM(key).encrypt(iv, data_js.encode("utf-8"), None)
+
+enc_b64 = base64.b64encode(ciphertext).decode("ascii")
+salt_b64 = base64.b64encode(salt).decode("ascii")
+iv_b64 = base64.b64encode(iv).decode("ascii")
 
 HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -173,13 +189,32 @@ HTML = """<!DOCTYPE html>
 </footer>
 </div>
 <script>
-const DB_B64="__DATA_B64__";
-const PW_HASH="__PW_HASH__";
+const ENC_B64 ="__ENC_B64__";
+const SALT_B64="__SALT_B64__";
+const IV_B64  ="__IV_B64__";
+const PBKDF2_ITERS=__PBKDF2_ITERS__;
 let DB=null, P=null;
-async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-function decodeData(){const bin=atob(DB_B64);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);DB=JSON.parse(new TextDecoder().decode(bytes));P=DB.profiles;}
-async function tryUnlock(pw){const h=await sha256(pw);if(h===PW_HASH){sessionStorage.setItem('am_unlocked','1');reveal();return true;}return false;}
-function reveal(){decodeData();document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';populateSources();setView(currentView());stats();bindControls();}
+function b64bytes(s){const bin=atob(s);const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a;}
+async function deriveKey(pw,salt){
+  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:PBKDF2_ITERS,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+}
+async function tryUnlock(pw){
+  try{
+    const key=await deriveKey(pw,b64bytes(SALT_B64));
+    const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64bytes(IV_B64)},key,b64bytes(ENC_B64));
+    const jsonText=new TextDecoder().decode(plain);
+    DB=JSON.parse(jsonText);P=DB.profiles;
+    sessionStorage.setItem('am_data',jsonText);
+    reveal();
+    return true;
+  }catch(e){return false;}
+}
+function reveal(){
+  if(!DB){const cached=sessionStorage.getItem('am_data');if(cached){DB=JSON.parse(cached);P=DB.profiles;}else{return;}}
+  document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';
+  populateSources();setView(currentView());stats();bindControls();
+}
 function bindControls(){
   document.getElementById('q').addEventListener('input',render);
   document.getElementById('sort').addEventListener('change',render);
@@ -189,8 +224,16 @@ function bindControls(){
 }
 document.getElementById('go').addEventListener('click',submitPw);
 document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')submitPw();});
-async function submitPw(){const pw=document.getElementById('pw').value;const ok=await tryUnlock(pw);if(!ok){const b=document.querySelector('#gate .box');b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');},400);document.getElementById('err').textContent='Wrong passcode';document.getElementById('pw').value='';}}
-if(sessionStorage.getItem('am_unlocked')==='1')reveal();
+async function submitPw(){
+  const pw=document.getElementById('pw').value;
+  document.getElementById('err').textContent='Unlocking…';
+  const ok=await tryUnlock(pw);
+  if(!ok){
+    const b=document.querySelector('#gate .box');b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');},400);
+    document.getElementById('err').textContent='Wrong passcode';document.getElementById('pw').value='';
+  }
+}
+if(sessionStorage.getItem('am_data'))reveal();
 function age(dob){var m=dob.match(/(\\d{2})\\/(\\d{2})\\/(\\d{4})/);if(!m)return null;var d=new Date(m[3],m[2]-1,m[1]);var t=new Date();var a=t.getFullYear()-d.getFullYear();if(t.getMonth()<d.getMonth()||(t.getMonth()==d.getMonth()&&t.getDate()<d.getDate()))a--;return a;}
 function gv(arr,key){for(var i=0;i<arr.length;i++){if(arr[i][0]==key)return arr[i][1];}return "";}
 function gunNum(g){var m=(g||"").match(/([\\d.]+)/);return m?parseFloat(m[1]):0;}
@@ -321,13 +364,13 @@ function stats(){
 </body>
 </html>"""
 
-import hashlib
-pw_hash = hashlib.sha256(PASSWORD.encode("utf-8")).hexdigest()
 HTML = (HTML
     .replace("__WHO__", db.get("generatedFor",""))
     .replace("__UPDATED__", updated)
-    .replace("__DATA_B64__", data_b64)
-    .replace("__PW_HASH__", pw_hash))
+    .replace("__ENC_B64__", enc_b64)
+    .replace("__SALT_B64__", salt_b64)
+    .replace("__IV_B64__", iv_b64)
+    .replace("__PBKDF2_ITERS__", str(PBKDF2_ITERS)))
 with open(OUT, "w", encoding="utf-8") as f:
     f.write(HTML)
-print("Wrote", OUT, "with", len(db["profiles"]), "profiles")
+print("Wrote", OUT, "with", len(db["profiles"]), "profiles (AES-GCM encrypted)")
