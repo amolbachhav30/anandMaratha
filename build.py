@@ -237,22 +237,40 @@ async function deriveKey(pw,salt){
   const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:PBKDF2_ITERS,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
 }
+function safeSetSession(k,v){try{sessionStorage.setItem(k,v);}catch(e){/* iOS Safari private mode etc. — ignore */}}
 async function tryUnlock(pw){
+  let stage='start';
   try{
+    stage='derive';
     const key=await deriveKey(pw,b64bytes(SALT_B64));
+    stage='decrypt';
     const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64bytes(IV_B64)},key,b64bytes(ENC_B64));
+    stage='parse';
     const jsonText=new TextDecoder().decode(plain);
     DB=JSON.parse(jsonText);P=DB.profiles;
-    sessionStorage.setItem('am_data',jsonText);
-    sessionStorage.setItem('am_salt',SALT_B64);
-    sessionStorage.setItem('am_pw',pw);
+    // Cache in sessionStorage. Tolerate failure (iOS private mode, quota, etc.).
+    safeSetSession('am_data',jsonText);
+    safeSetSession('am_salt',SALT_B64);
+    safeSetSession('am_pw',pw);
+    stage='show';
     showApp();
     return true;
-  }catch(e){return false;}
+  }catch(e){
+    // Wrong password makes AES-GCM throw an OperationError during decrypt.
+    // Other stages should NOT throw. If they do, surface a hint.
+    if(stage==='derive'||stage==='decrypt'){return false;}
+    var el=document.getElementById('err');
+    if(el){el.textContent='Unlocked, but failed to show app ('+stage+'): '+(e&&e.message||e);}
+    console.error('unlock failure at stage',stage,e);
+    return false;
+  }
 }
 function showApp(){
   document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';
-  populateSources();setView(currentView());stats();bindControls();
+  try{populateSources();}catch(e){console.error('populateSources',e);}
+  try{setView(currentView());}catch(e){console.error('setView',e);}
+  try{stats();}catch(e){console.error('stats',e);}
+  try{bindControls();}catch(e){console.error('bindControls',e);}
 }
 async function reveal(){
   // Try cached data only if the encrypted blob hasn't changed since we cached.
