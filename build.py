@@ -98,6 +98,34 @@ HTML = """<!DOCTYPE html>
   #app{display:none;}
   .shake{animation:shake .35s;}
   @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+  /* Source chip (top-right of card) */
+  .src{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);color:var(--brown2);font-weight:600;font-size:10px;letter-spacing:.3px;padding:3px 8px;border-radius:20px;text-transform:uppercase;}
+  .badge{top:38px;}  /* shift match% badge below source chip */
+  /* View toggle */
+  .viewtog{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
+  .viewtog button{border:none;background:transparent;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;}
+  .viewtog button.on{background:var(--brown);color:#fff;}
+  /* List view */
+  .list{display:flex;flex-direction:column;gap:10px;}
+  .row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+  .row .ph{width:64px;height:80px;border-radius:8px;background:#efe7dd;overflow:hidden;}
+  .row .ph img{width:100%;height:100%;object-fit:cover;}
+  .row .mid .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .row .mid .nm{font-size:15px;font-weight:600;color:var(--ink);}
+  .row .mid .meta{font-size:12px;color:var(--muted);margin-top:2px;}
+  .row .mid .line2{font-size:13px;color:var(--ink);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap;}
+  .row .mid .line2 span{white-space:nowrap;}
+  .row .mid .srctag{font-size:10px;font-weight:600;color:var(--brown2);background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:1px 7px;letter-spacing:.3px;text-transform:uppercase;}
+  .row .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:12px;}
+  .row .right .m{font-size:14px;font-weight:700;color:var(--brown);}
+  .row .right .c-ok{color:var(--good);font-weight:600;}
+  .row .right .c-no{color:var(--muted);}
+  .row .right a{font-size:12px;color:var(--brown);text-decoration:none;border:1px solid var(--brown);padding:4px 8px;border-radius:6px;}
+  @media (max-width:600px){
+    .row{grid-template-columns:48px 1fr;gap:8px;padding:8px 10px;}
+    .row .ph{width:48px;height:60px;}
+    .row .right{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line);}
+  }
 </style>
 </head>
 <body>
@@ -129,8 +157,15 @@ HTML = """<!DOCTYPE html>
       <option value="contact">Show: Contact available</option>
       <option value="pending">Show: Awaiting interest</option>
     </select>
+    <select id="source">
+      <option value="all">Source: All</option>
+    </select>
+    <div class="viewtog" id="viewtog">
+      <button data-v="card" class="on">▦ Cards</button>
+      <button data-v="list">☰ List</button>
+    </div>
   </div>
-  <div class="grid" id="grid"></div>
+  <div id="grid"></div>
 </div>
 <footer>
   Photos load directly from anandmaratha.com — if a photo is blank, open the site and sign in, then refresh this page.
@@ -144,8 +179,14 @@ let DB=null, P=null;
 async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');}
 function decodeData(){const bin=atob(DB_B64);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);DB=JSON.parse(new TextDecoder().decode(bytes));P=DB.profiles;}
 async function tryUnlock(pw){const h=await sha256(pw);if(h===PW_HASH){sessionStorage.setItem('am_unlocked','1');reveal();return true;}return false;}
-function reveal(){decodeData();document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';stats();render();bindControls();}
-function bindControls(){document.getElementById('q').addEventListener('input',render);document.getElementById('sort').addEventListener('change',render);document.getElementById('filter').addEventListener('change',render);}
+function reveal(){decodeData();document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';populateSources();setView(currentView());stats();bindControls();}
+function bindControls(){
+  document.getElementById('q').addEventListener('input',render);
+  document.getElementById('sort').addEventListener('change',render);
+  document.getElementById('filter').addEventListener('change',render);
+  document.getElementById('source').addEventListener('change',render);
+  Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-v'));});});
+}
 document.getElementById('go').addEventListener('click',submitPw);
 document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')submitPw();});
 async function submitPw(){const pw=document.getElementById('pw').value;const ok=await tryUnlock(pw);if(!ok){const b=document.querySelector('#gate .box');b.classList.add('shake');setTimeout(function(){b.classList.remove('shake');},400);document.getElementById('err').textContent='Wrong passcode';document.getElementById('pw').value='';}}
@@ -186,8 +227,9 @@ function card(p){
   } else {
     contactHtml="<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap the green <b>INTERESTED</b> button — contact details will arrive by email.</div>";
   }
-  return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"'>"+
-    "<div class='photoWrap'>"+photoHtml+"<span class='badge'>"+p.match+"% match</span>"+contactedTag+navHtml+"</div>"+
+  var srcTag=p.source?"<span class='src'>"+esc(p.source)+"</span>":"";
+  return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"' data-source='"+esc(p.source||"")+"'>"+
+    "<div class='photoWrap'>"+photoHtml+srcTag+"<span class='badge'>"+p.match+"% match</span>"+contactedTag+navHtml+"</div>"+
     "<div class='body'>"+
       "<p class='nm'>"+esc(p.surname)+"</p>"+
       "<p class='rg'>"+p.regno+" · DOB "+esc(gv(p.details,"Date Of Birth"))+"</p>"+
@@ -207,24 +249,63 @@ function nav(btn,dir){var w=btn.closest('.photoWrap');var imgs=w.querySelectorAl
 function go(dot,i){show(dot.closest('.photoWrap'),i);}
 function show(w,n){w.querySelectorAll('img').forEach(function(im,i){im.style.display=i===n?'block':'none';});w.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===n);});}
 
+function row(p){
+  var a=age(gv(p.details,"Date Of Birth"));
+  var h=gv(p.details,"Height"); var ed=gv(p.details,"Education"); var oc=gv(p.details,"Occupation");
+  var loc=gv(p.family,"Parents Residing In");
+  var ph=(p.photos&&p.photos.length?p.photos[0]:"https://www.anandmaratha.com/no_imgf.jpg");
+  var meta=[]; if(a)meta.push(a+" yrs"); if(h)meta.push(h); if(loc)meta.push("📍"+loc);
+  var line2=[]; if(ed)line2.push("<span>🎓 "+esc(ed)+"</span>"); if(oc)line2.push("<span>💼 "+esc(oc)+"</span>");
+  var contact=p.contact?"<span class='c-ok'>✓ "+esc(p.contact.name||"contact ready")+"</span>":"<span class='c-no'>awaiting interest</span>";
+  var srcTag=p.source?"<span class='srctag'>"+esc(p.source)+"</span>":"";
+  return "<div class='row' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-source='"+esc(p.source||"")+"'>"+
+    "<div class='ph'><img src='"+ph+"' onerror=\\"this.onerror=null;this.src='https://www.anandmaratha.com/no_imgf.jpg'\\"/></div>"+
+    "<div class='mid'>"+
+      "<div class='top'><span class='nm'>"+esc(p.surname||"(no name)")+"</span>"+srcTag+"</div>"+
+      "<div class='meta'>"+esc(p.regno)+" · "+meta.join(" · ")+"</div>"+
+      (line2.length?"<div class='line2'>"+line2.join("")+"</div>":"")+
+      "<div class='meta'>★ "+esc(p.gun)+" · "+contact+"</div>"+
+    "</div>"+
+    "<div class='right'>"+
+      "<div class='m'>"+p.match+"%</div>"+
+      "<a href='"+p.link+"' target='_blank'>Open →</a>"+
+    "</div>"+
+  "</div>";
+}
+
+function currentView(){return localStorage.getItem('am_view')||'card';}
+function setView(v){localStorage.setItem('am_view',v);Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.classList.toggle('on',b.getAttribute('data-v')===v);});render();}
+
 function render(){
   var q=document.getElementById('q').value.toLowerCase().trim();
   var sort=document.getElementById('sort').value;
   var filt=document.getElementById('filter').value;
+  var src=document.getElementById('source').value;
+  var view=currentView();
   var list=P.slice();
   list.sort(function(a,b){
     if(sort==='match')return b.match-a.match;
     if(sort==='gun')return gunNum(b.gun)-gunNum(a.gun);
     return (b.firstSeen||'').localeCompare(a.firstSeen||'');
   });
-  var html=list.map(card).join("");
-  var g=document.getElementById('grid');g.innerHTML=html;
+  var g=document.getElementById('grid');
+  g.className=(view==='list'?'list':'grid');
+  g.innerHTML=list.map(view==='list'?row:card).join("");
   Array.prototype.forEach.call(g.children,function(el){
     var ok=true;
     if(q&&el.getAttribute('data-blob').indexOf(q)<0)ok=false;
     if(filt==='contact'&&el.getAttribute('data-contact')!=='1')ok=false;
     if(filt==='pending'&&el.getAttribute('data-contact')!=='0')ok=false;
+    if(src!=='all'&&el.getAttribute('data-source')!==src)ok=false;
     el.style.display=ok?'':'none';
+  });
+}
+
+function populateSources(){
+  var sel=document.getElementById('source');
+  var seen={};
+  (DB.sources||[]).concat(P.map(function(p){return p.source||"";})).forEach(function(s){
+    if(s&&!seen[s]){seen[s]=1;var o=document.createElement('option');o.value=s;o.textContent='Source: '+s;sel.appendChild(o);}
   });
 }
 function stats(){
