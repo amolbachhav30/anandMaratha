@@ -45,9 +45,26 @@ HTML = """<!DOCTYPE html>
   header p{margin:4px 0 0;opacity:.9;font-size:13px;}
   .wrap{max-width:1180px;margin:0 auto;padding:20px 18px 60px;}
   .stats{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0;}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;min-width:120px;flex:1 1 120px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;min-width:100px;flex:1 1 100px;cursor:pointer;transition:transform .12s,border-color .12s;user-select:none;}
+  .stat:hover{transform:translateY(-1px);border-color:var(--brown);}
+  .stat.on{border-color:var(--brown);background:#fdf6ee;box-shadow:0 4px 12px rgba(160,90,44,.18);}
   .stat b{display:block;font-size:24px;color:var(--brown);}
-  .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+  .stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+  /* Stage colors — match the pill colors */
+  .stat[data-stage="new"] b{color:#777;} .stat[data-stage="interest"] b{color:#3c5a78;}
+  .stat[data-stage="contact"] b{color:#5c4480;} .stat[data-stage="talking"] b{color:#b76e00;}
+  .stat[data-stage="meeting"] b{color:#2e7d32;} .stat[data-stage="considering"] b{color:#107a6f;}
+  .stat[data-stage="closed-yes"] b{color:#b88600;} .stat[data-stage="closed-no"] b{color:#9c2727;}
+  /* Stage pill on cards/rows */
+  .stage{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;letter-spacing:.2px;margin-right:4px;}
+  .stage[data-s="new"]{background:#eee;color:#555;}
+  .stage[data-s="interest"]{background:#eef3f8;color:#3c5a78;border:1px solid #d6e1ec;}
+  .stage[data-s="contact"]{background:#ece6f5;color:#5c4480;border:1px solid #d4c8e6;}
+  .stage[data-s="talking"]{background:#fff0db;color:#7a4a00;border:1px solid #ecd5a9;}
+  .stage[data-s="meeting"]{background:#e7f5e8;color:#2e7d32;border:1px solid #cfe6cf;}
+  .stage[data-s="considering"]{background:#dcf3ef;color:#107a6f;border:1px solid #b5e0d6;}
+  .stage[data-s="closed-yes"]{background:#fff5cc;color:#7a5a00;border:1px solid #e6d480;}
+  .stage[data-s="closed-no"]{background:#fce9e9;color:#9c2727;border:1px solid #f0caca;}
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
   .controls input,.controls select{padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:14px;background:#fff;color:var(--ink);}
   .controls input{flex:1;min-width:180px;}
@@ -222,6 +239,17 @@ HTML = """<!DOCTYPE html>
     <select id="source">
       <option value="all">Source: All</option>
     </select>
+    <select id="stage">
+      <option value="all">Stage: All</option>
+      <option value="new">Stage: New</option>
+      <option value="interest">Stage: Interest</option>
+      <option value="contact">Stage: Contact</option>
+      <option value="talking">Stage: Talking</option>
+      <option value="meeting">Stage: Meeting</option>
+      <option value="considering">Stage: Considering</option>
+      <option value="closed-yes">Stage: Closed — yes</option>
+      <option value="closed-no">Stage: Closed — no</option>
+    </select>
     <div class="viewtog" id="viewtog">
       <button data-v="card" class="on">▦ Cards</button>
       <button data-v="list">☰ List</button>
@@ -313,8 +341,23 @@ function bindControls(){
   document.getElementById('q').addEventListener('input',render);
   document.getElementById('sort').addEventListener('change',render);
   document.getElementById('filter').addEventListener('change',render);
-  document.getElementById('source').addEventListener('change',render);
+  document.getElementById('source').addEventListener('change',function(){highlightActiveStats();render();});
+  document.getElementById('stage').addEventListener('change',function(){highlightActiveStats();render();});
   Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-v'));});});
+  // Click a stat box → set the matching filter
+  document.getElementById('stats').addEventListener('click',function(e){
+    var el=e.target.closest('.stat'); if(!el)return;
+    var f=el.getAttribute('data-filter'), v=el.getAttribute('data-value');
+    if(f==='total'){
+      document.getElementById('source').value='all';
+      document.getElementById('stage').value='all';
+    } else if(f==='source'){
+      document.getElementById('source').value=v;
+    } else if(f==='stage'){
+      document.getElementById('stage').value=v;
+    }
+    highlightActiveStats();render();
+  });
 }
 document.getElementById('go').addEventListener('click',submitPw);
 document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')submitPw();});
@@ -342,7 +385,9 @@ function statusTags(p){
   else if(p.status==='declined')st="<span class='htag bad'>#declined</span>";
   else if(p.status==='pending')st="<span class='htag pending'>#pending</span>";
   else st=p.contact?"<span class='htag ok'>#accepted</span>":"<span class='htag unknown'>#unknown</span>";
-  return "<div class='tags'>"+dt+dir+st+"</div>";
+  var s=stageOf(p);
+  var stage="<span class='stage' data-s='"+s+"'>"+STAGE_LABEL[s]+"</span>";
+  return "<div class='tags'>"+stage+dt+dir+st+"</div>";
 }
 function statusBox(p){
   if(p.contact)return null; // handled by contact rendering
@@ -393,7 +438,7 @@ function card(p){
   var displayName=p.surname?esc(p.surname):esc(p.regno);
   var dob=gv(p.details,"Date Of Birth");
   var subRg=p.regno+(dob?" · DOB "+esc(dob):"");
-  return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"' data-source='"+esc(p.source||"")+"'>"+
+  return "<div class='card' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-seen='"+p.firstSeen+"' data-source='"+esc(p.source||"")+"' data-stage='"+stageOf(p)+"'>"+
     "<div class='photoWrap'>"+photoHtml+srcTag+matchBadge+contactedTag+navHtml+"</div>"+
     "<div class='body'>"+
       "<p class='nm'>"+displayName+"</p>"+
@@ -427,7 +472,7 @@ function row(p){
   var gunInline=p.gun?"★ "+esc(p.gun):"";
   var bottom=[gunInline, contact].filter(Boolean).join(" · ");
   var matchInline=(p.match>0)?p.match+"%":"";
-  return "<div class='row' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-source='"+esc(p.source||"")+"'>"+
+  return "<div class='row' data-blob='"+esc((p.surname+" "+p.regno+" "+ed+" "+oc+" "+loc+" "+(p.source||"")).toLowerCase())+"' data-match='"+p.match+"' data-gun='"+gunNum(p.gun)+"' data-contact='"+(p.contact?1:0)+"' data-source='"+esc(p.source||"")+"' data-stage='"+stageOf(p)+"'>"+
     "<div class='ph'><img src='"+ph+"' onerror=\\"this.onerror=null;this.src='https://www.anandmaratha.com/no_imgf.jpg'\\"/></div>"+
     "<div class='mid'>"+
       "<div class='top'><span class='nm'>"+displayName+"</span>"+srcTag+"</div>"+
@@ -506,6 +551,7 @@ function render(){
   var sort=document.getElementById('sort').value;
   var filt=document.getElementById('filter').value;
   var src=document.getElementById('source').value;
+  var stg=document.getElementById('stage').value;
   var view=currentView();
   var list=P.slice();
   list.sort(function(a,b){
@@ -522,6 +568,7 @@ function render(){
     if(filt==='contact'&&el.getAttribute('data-contact')!=='1')ok=false;
     if(filt==='pending'&&el.getAttribute('data-contact')!=='0')ok=false;
     if(src!=='all'&&el.getAttribute('data-source')!==src)ok=false;
+    if(stg!=='all'&&el.getAttribute('data-stage')!==stg)ok=false;
     el.style.display=ok?'':'none';
   });
 }
@@ -533,17 +580,39 @@ function populateSources(){
     if(s&&!seen[s]){seen[s]=1;var o=document.createElement('option');o.value=s;o.textContent='Source: '+s;sel.appendChild(o);}
   });
 }
+var STAGE_LABEL={new:'New',interest:'Interest',contact:'Contact',talking:'Talking',meeting:'Meeting',considering:'Considering','closed-yes':'Closed yes','closed-no':'Closed no'};
+var STAGE_ORDER=['new','interest','contact','talking','meeting','considering','closed-yes','closed-no'];
+
+function stageOf(p){return (p.crm&&p.crm.stage)||'interest';}
+
 function stats(){
-  var withC=P.filter(function(p){return p.contact;}).length;
-  var bySource={};
-  P.forEach(function(p){var s=p.source||"(unknown)";bySource[s]=(bySource[s]||0)+1;});
-  var sourceHtml=Object.keys(bySource).sort().map(function(s){
-    return "<div class='stat'><b>"+bySource[s]+"</b><span>"+s+"</span></div>";
-  }).join("");
-  document.getElementById('stats').innerHTML=
-    "<div class='stat'><b>"+P.length+"</b><span>Total</span></div>"+
-    sourceHtml+
-    "<div class='stat'><b>"+withC+"</b><span>Contact ready</span></div>";
+  var bySource={}, byStage={};
+  STAGE_ORDER.forEach(function(s){byStage[s]=0;});
+  P.forEach(function(p){
+    var s=p.source||'(unknown)'; bySource[s]=(bySource[s]||0)+1;
+    byStage[stageOf(p)]=(byStage[stageOf(p)]||0)+1;
+  });
+  var html="<div class='stat' data-filter='total'><b>"+P.length+"</b><span>Total</span></div>";
+  Object.keys(bySource).sort().forEach(function(s){
+    html+="<div class='stat' data-filter='source' data-value='"+esc(s)+"'><b>"+bySource[s]+"</b><span>"+esc(s)+"</span></div>";
+  });
+  STAGE_ORDER.forEach(function(s){
+    if(byStage[s]>0||['interest','contact','talking','meeting'].indexOf(s)>=0){
+      html+="<div class='stat' data-filter='stage' data-value='"+s+"' data-stage='"+s+"'><b>"+byStage[s]+"</b><span>"+STAGE_LABEL[s]+"</span></div>";
+    }
+  });
+  document.getElementById('stats').innerHTML=html;
+  highlightActiveStats();
+}
+
+function highlightActiveStats(){
+  var src=document.getElementById('source').value;
+  var stg=document.getElementById('stage').value;
+  Array.prototype.forEach.call(document.querySelectorAll('#stats .stat'),function(el){
+    var f=el.getAttribute('data-filter'), v=el.getAttribute('data-value');
+    var on=(f==='source'&&src===v)||(f==='stage'&&stg===v)||(f==='total'&&src==='all'&&stg==='all');
+    el.classList.toggle('on', on);
+  });
 }
 </script>
 </body>

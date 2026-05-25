@@ -155,7 +155,15 @@
         "phones": "9922600325, 9834601196",
         "email": "devidasghadge570@gmail.com"
       },
-      "firstSeen": "2026-05-22"
+      "firstSeen": "2026-05-22",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG144849",
@@ -302,7 +310,15 @@
         "phones": "9607717157, 9503574324",
         "email": "vaijayantamane1@gmail.com"
       },
-      "firstSeen": "2026-05-22"
+      "firstSeen": "2026-05-22",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG145745",
@@ -448,7 +464,15 @@
         "phones": "9422934205, 9422070020",
         "email": "tejalkakde14@gmail.com"
       },
-      "firstSeen": "2026-05-22"
+      "firstSeen": "2026-05-22",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG146795",
@@ -595,7 +619,15 @@
         "phones": "9820818090",
         "email": "kiranhirodepatil@gmail.com"
       },
-      "firstSeen": "2026-05-23"
+      "firstSeen": "2026-05-23",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG144285",
@@ -737,7 +769,15 @@
         ]
       ],
       "contact": null,
-      "firstSeen": "2026-05-20"
+      "firstSeen": "2026-05-20",
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG147152",
@@ -875,7 +915,15 @@
         ]
       ],
       "contact": null,
-      "firstSeen": "2026-05-20"
+      "firstSeen": "2026-05-20",
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG148360",
@@ -1017,7 +1065,15 @@
         ]
       ],
       "contact": null,
-      "firstSeen": "2026-05-18"
+      "firstSeen": "2026-05-18",
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG145442",
@@ -1164,7 +1220,15 @@
         "phones": "8007244610, 08551009958",
         "email": "a8007244610@gmail.com"
       },
-      "firstSeen": "2026-05-21"
+      "firstSeen": "2026-05-21",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG145106",
@@ -1310,7 +1374,15 @@
         ]
       ],
       "contact": null,
-      "firstSeen": "2026-05-17"
+      "firstSeen": "2026-05-17",
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG148932",
@@ -1456,7 +1528,15 @@
         "phones": "9822778139, 8149750007",
         "email": "vaishnavipatil77@gmail.com"
       },
-      "firstSeen": "2026-05-18"
+      "firstSeen": "2026-05-18",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MG144231",
@@ -1606,7 +1686,15 @@
         "phones": "9823113985",
         "email": "sadhnadukare91@gmail.com"
       },
-      "firstSeen": "2026-05-16"
+      "firstSeen": "2026-05-16",
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FX43775",
@@ -1645,7 +1733,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FS15025",
@@ -1684,7 +1780,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FR15863",
@@ -1723,7 +1827,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI07207182828",
@@ -1762,7 +1874,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFT032108",
@@ -1801,7 +1921,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FK11882",
@@ -1840,7 +1968,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFN122401",
@@ -1879,7 +2015,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FA74842",
@@ -1918,7 +2062,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FH12348",
@@ -1957,7 +2109,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFJ042403",
@@ -1996,7 +2156,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FW31700",
@@ -2035,7 +2203,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FF90383",
@@ -2074,7 +2250,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FI15713",
@@ -2113,7 +2297,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI04217190279",
@@ -2152,7 +2344,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FP14045",
@@ -2191,7 +2391,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FE93198",
@@ -2230,7 +2438,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFK102008",
@@ -2269,7 +2485,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI10217194320",
@@ -2308,7 +2532,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFT042346",
@@ -2347,7 +2579,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FU70416",
@@ -2386,7 +2626,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FNRIN031901",
@@ -2425,7 +2673,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI02227197739",
@@ -2464,7 +2720,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FJ16737",
@@ -2503,7 +2767,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FM70321",
@@ -2542,7 +2814,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FF69202",
@@ -2581,7 +2861,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFE02212001",
@@ -2620,7 +2908,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FX10842",
@@ -2659,7 +2955,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI10207184641",
@@ -2698,7 +3002,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FY10983",
@@ -2737,7 +3049,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FG11732",
@@ -2776,7 +3096,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI12177161020",
@@ -2815,7 +3143,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FD13920",
@@ -2854,7 +3190,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FT14584",
@@ -2893,7 +3237,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI11197176474",
@@ -2932,7 +3284,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI01227195952",
@@ -2971,7 +3331,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FK83989",
@@ -3010,7 +3378,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFI03217189056",
@@ -3049,7 +3425,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "WFE10213001",
@@ -3088,7 +3472,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "FJ33562",
@@ -3127,7 +3519,15 @@
       ],
       "family": [],
       "expectation": [],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV17474",
@@ -3328,7 +3728,15 @@
           "match and well educated Job @pune"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV18803",
@@ -3525,7 +3933,15 @@
           "Well educated, settled"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV19297",
@@ -3734,7 +4150,15 @@
           "BTech, MTech preferably based at Pune"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV19900",
@@ -3943,7 +4367,15 @@
           "M.S.,M.E.,M.Tech.,B.E.,B Tech.,MCS, (I.T. sector Preferable),decent"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV20172",
@@ -4148,7 +4580,15 @@
           "match and well educated , B.E.I.T./COMP.,Govt job in PUNE"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV20175",
@@ -4345,7 +4785,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV20295",
@@ -4550,7 +4998,15 @@
           "Architect ,M.Arch.,Civil Engineer,Builder, construction field related businessman"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV20336",
@@ -4755,7 +5211,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV20444",
@@ -4960,7 +5424,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21125",
@@ -5165,7 +5637,15 @@
           "looking for a Well educated,supportive partner Working in Mumbai/ with Permanent WFH"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21179",
@@ -5370,7 +5850,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21521",
@@ -5571,7 +6059,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21584",
@@ -5776,7 +6272,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21726",
@@ -5981,7 +6485,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV21871",
@@ -6186,7 +6698,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22209",
@@ -6391,7 +6911,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22366",
@@ -6600,7 +7128,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22482",
@@ -6801,7 +7337,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22484",
@@ -7006,7 +7550,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22498",
@@ -7211,7 +7763,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22619",
@@ -7420,7 +7980,15 @@
           "Similar Educated with Government Job, well settled, well mannered. Preferring For Mumbai located Groom."
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV22697",
@@ -7621,7 +8189,15 @@
           "M.B.B.S.,M.D.,M.S.,B.A.M.S. BE,ME, Btech,class1 officer, government officer"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV23152",
@@ -7822,7 +8398,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV23213",
@@ -8027,7 +8611,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV23441",
@@ -8232,7 +8824,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24019",
@@ -8437,7 +9037,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24048",
@@ -8638,7 +9246,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24080",
@@ -8835,7 +9451,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24086",
@@ -9036,7 +9660,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24104",
@@ -9237,7 +9869,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24163",
@@ -9438,7 +10078,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24173",
@@ -9643,7 +10291,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24182",
@@ -9848,7 +10504,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24183",
@@ -10049,7 +10713,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24193",
@@ -10250,7 +10922,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24202",
@@ -10451,7 +11131,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24205",
@@ -10648,7 +11336,15 @@
           "Anuroop, business person, government officer"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24213",
@@ -10850,6 +11546,14 @@
         "address": "KALYANI SUNDARRAO KALE,KOPARGAON DIST-AHMADNAGAR",
         "phones": "9545247002",
         "email": "Kalyani.kkale@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
       }
     },
     {
@@ -11055,7 +11759,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24303",
@@ -11260,7 +11972,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24344",
@@ -11465,7 +12185,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24392",
@@ -11666,7 +12394,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24424",
@@ -11867,7 +12603,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24436",
@@ -12072,7 +12816,15 @@
           "CLASS 1,CLASS 2,M.B.B.S.,M.D.,B.D.S."
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24437",
@@ -12277,7 +13029,15 @@
           "Class 1,Class 2"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24451",
@@ -12482,7 +13242,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24460",
@@ -12687,7 +13455,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24463",
@@ -12888,7 +13664,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24505",
@@ -13089,7 +13873,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24540",
@@ -13290,7 +14082,15 @@
           "MATCH AND WELL EDUCATED FROM ANY FIELD"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24589",
@@ -13495,7 +14295,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24724",
@@ -13700,7 +14508,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24730",
@@ -13902,6 +14718,14 @@
         "address": "PRAGATI SURESH BOHARE, Gandharva Nagari, Nashik Road",
         "phones": "9421388459",
         "email": "suresh.bohare12@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
       }
     },
     {
@@ -14107,7 +14931,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24749",
@@ -14316,7 +15148,15 @@
           "B E, B Tech,"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24775",
@@ -14521,7 +15361,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24777",
@@ -14722,7 +15570,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24784",
@@ -14927,7 +15783,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24800",
@@ -15128,7 +15992,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24863",
@@ -15329,7 +16201,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24876",
@@ -15530,7 +16410,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24893",
@@ -15735,7 +16623,15 @@
           "MATCH AND WELL EDUCATED"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24928",
@@ -15940,7 +16836,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV24937",
@@ -16141,7 +17045,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25074",
@@ -16346,7 +17258,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25077",
@@ -16555,7 +17475,15 @@
           "M. Pharmacy, ABA, Doctor, IT. Professional, Government service"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25099",
@@ -16756,7 +17684,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25122",
@@ -16965,7 +17901,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25167",
@@ -17166,7 +18110,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25173",
@@ -17367,7 +18319,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25176",
@@ -17572,7 +18532,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25246",
@@ -17777,7 +18745,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25314",
@@ -17982,7 +18958,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25356",
@@ -18183,7 +19167,15 @@
           "Match and well educated."
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25396",
@@ -18388,7 +19380,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25401",
@@ -18585,7 +19585,15 @@
           "Working in government sector"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25418",
@@ -18794,7 +19802,15 @@
           "Package should be 30 LPA and ABOVE Well cultured Family"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25428",
@@ -18991,7 +20007,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25434",
@@ -19196,7 +20220,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25504",
@@ -19393,7 +20425,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25553",
@@ -19590,7 +20630,15 @@
           "B.a.m.s ,md,ms,mbbs"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25634",
@@ -19791,7 +20839,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25642",
@@ -19992,7 +21048,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25758",
@@ -20193,7 +21257,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25761",
@@ -20398,7 +21470,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25763",
@@ -20615,7 +21695,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25770",
@@ -20816,7 +21904,15 @@
           "C.A.,M.B.A.,B.E.,Govt.Officer"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25771",
@@ -21021,7 +22117,15 @@
           "Does not Matter"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25783",
@@ -21222,7 +22326,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25793",
@@ -21423,7 +22535,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25825",
@@ -21620,7 +22740,15 @@
           "BAMS MS MD MBBS MS MD IIT IIM BTECH MTECH CLASS 1 2 OFFICER"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25868",
@@ -21821,7 +22949,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25805",
@@ -22030,7 +23166,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25979",
@@ -22239,7 +23383,15 @@
           "M.D.,M.S,M.D.S.,Govt.servant,businessman"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25989",
@@ -22440,7 +23592,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26007",
@@ -22641,7 +23801,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV25998",
@@ -22839,6 +24007,14 @@
         "address": "Pooja Chandrashekhar Mhaske,Sonai DIST-AHILYANAGAR  Now @ Nashik",
         "phones": "9371930639",
         "email": "abhisheknasik@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
       }
     },
     {
@@ -23044,7 +24220,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26251",
@@ -23249,7 +24433,15 @@
           "Match and well educated and understanding"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26267",
@@ -23459,6 +24651,14 @@
         "address": "Ashwini KAILAS SURYAWANSHI,SAUNDANE TAL-MALEGAON  now @ KALIKA NAGAR,UNTWADI",
         "phones": "9561586108",
         "email": "kailassuryawanshi534@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
       }
     },
     {
@@ -23664,7 +24864,15 @@
           "MD, MS-Medical, MDS, Businessman, Govt Class I officer, Architect"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26316",
@@ -23869,7 +25077,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26373",
@@ -24074,7 +25290,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV23225",
@@ -24275,7 +25499,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV23501",
@@ -24481,6 +25713,14 @@
         "address": "VAISHALI BALASAHEB BHILAR, NASHIK",
         "phones": "91--, 9552459305",
         "email": "vaishu01bhilar@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
       }
     },
     {
@@ -24686,7 +25926,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26402",
@@ -24895,7 +26143,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26469",
@@ -25100,7 +26356,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26598",
@@ -25301,7 +26565,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26617",
@@ -25502,7 +26774,15 @@
           "Match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     },
     {
       "regno": "MV26712",
@@ -25707,7 +26987,15 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
     }
   ]
 }
