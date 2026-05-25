@@ -129,8 +129,10 @@ HTML = """<!DOCTYPE html>
   .row .mid .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .row .mid .nm{font-size:15px;font-weight:600;color:var(--ink);}
   .row .mid .meta{font-size:12px;color:var(--muted);margin-top:2px;}
+  .row .mid{min-width:0;}  /* lets text truncate properly inside the grid */
   .row .mid .line2{font-size:13px;color:var(--ink);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap;}
-  .row .mid .line2 span{white-space:nowrap;}
+  .row .mid .line2 span{overflow:hidden;text-overflow:ellipsis;}
+  .row .mid .meta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .row .mid .srctag{font-size:10px;font-weight:600;color:var(--brown2);background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:1px 7px;letter-spacing:.3px;text-transform:uppercase;}
   /* Status hashtags shown on every card/row */
   .htag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.2px;margin-right:4px;}
@@ -169,7 +171,22 @@ HTML = """<!DOCTYPE html>
   @media (max-width:600px){
     .row{grid-template-columns:48px 1fr;gap:8px;padding:8px 10px;}
     .row .ph{width:48px;height:60px;}
-    .row .right{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line);}
+    .row .mid .nm{font-size:14px;}
+    .row .mid .meta,.row .mid .line2{font-size:12px;}
+    .row .mid .line2 span{max-width:100%;display:inline-block;}
+    .row .right{grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line);font-size:12px;gap:6px;}
+    .row .right .m{font-size:13px;}
+    .row .right a{padding:4px 8px;font-size:11px;}
+    .row .mid .srctag{font-size:9px;padding:1px 6px;}
+    /* Status tags wrap on mobile */
+    .row .htag{font-size:10px;padding:1px 6px;}
+    .row .tags{margin:4px 0 6px;}
+  }
+  /* Edge case: even narrower screens */
+  @media (max-width:360px){
+    .row{grid-template-columns:40px 1fr;}
+    .row .ph{width:40px;height:50px;}
+    .wrap{padding:8px 6px 50px;}
   }
 </style>
 </head>
