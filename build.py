@@ -144,6 +144,22 @@ HTML = """<!DOCTYPE html>
   .reason b{color:#9c2727;}
   .statusbox{background:#e7f5e8;border:1px solid #cfe6cf;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--good);}
   .pendingbox{background:#fdf6dc;border:1px solid #ecd99a;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:#876d12;}
+  /* Modal */
+  #modalBack{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto;}
+  #modalBack.on{display:flex;}
+  #modal{background:#fff;border-radius:14px;max-width:680px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4);padding:0;overflow:hidden;}
+  #modal .mhead{background:linear-gradient(to right,var(--brown),var(--brown2));color:#fff;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;}
+  #modal .mhead h2{margin:0;font-size:18px;font-weight:600;}
+  #modal .mhead .sub{font-size:12px;opacity:.85;margin-top:2px;}
+  #modal .mhead button{background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;width:32px;height:32px;border-radius:50%;cursor:pointer;line-height:1;}
+  #modal .mbody{padding:18px 22px 22px;max-height:calc(100vh - 160px);overflow-y:auto;}
+  #modal .mbody h4{margin:18px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
+  #modal .mbody h4:first-child{margin-top:0;}
+  /* Compact contact summary inside the card */
+  .contact-compact{background:#f1f8f1;border:1px solid #cfe6cf;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:13px;color:var(--good);}
+  .contact-compact b{color:var(--ink);}
+  .btn-more{flex:1;text-align:center;text-decoration:none;font-size:13px;font-weight:600;padding:9px 10px;border-radius:9px;border:1px solid var(--muted);color:var(--muted);background:#fff;cursor:pointer;}
+  .btn-more:hover{border-color:var(--brown);color:var(--brown);}
   .tags{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 8px;}
   .row .right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:12px;}
   .row .right .m{font-size:14px;font-weight:700;color:var(--brown);}
@@ -200,6 +216,15 @@ HTML = """<!DOCTYPE html>
   Photos load directly from anandmaratha.com — if a photo is blank, open the site and sign in, then refresh this page.
   Contact details appear automatically once you have expressed interest and the office has sent them.
 </footer>
+</div>
+<div id="modalBack" onclick="if(event.target.id==='modalBack')closeModal()">
+  <div id="modal">
+    <div class="mhead">
+      <div><h2 id="mTitle"></h2><div class="sub" id="mSub"></div></div>
+      <button onclick="closeModal()" aria-label="Close">×</button>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
 </div>
 <script>
 const ENC_B64 ="__ENC_B64__";
@@ -319,16 +344,14 @@ function card(p){
   var contactedTag=p.contact?"<span class='contacted'>✓ CONTACT</span>":"";
   var contactHtml;
   if(p.contact){
-    var c=p.contact, phones=(c.phones||"").split(",").map(function(x){x=x.trim();return x?"<a href='tel:"+x+"'>"+x+"</a>":"";}).filter(Boolean).join(", ");
-    contactHtml="<div class='contact'><h4>Contact Details</h4>"+
-      "<div><b>"+esc(c.name)+"</b></div>"+
-      (c.address?"<div>"+esc(c.address)+"</div>":"")+
-      (phones?"<div>📞 "+phones+"</div>":"")+
-      (c.email?"<div>📧 <a href='mailto:"+esc(c.email)+"'>"+esc(c.email)+"</a></div>":"")+
+    var c=p.contact;
+    var firstPhone=(c.phones||"").split(",")[0].trim();
+    contactHtml="<div class='contact-compact'><b>"+esc(c.name||"contact")+"</b>"+
+      (firstPhone?" · <a href='tel:"+esc(firstPhone)+"'>📞 "+esc(firstPhone)+"</a>":"")+
       "</div>";
   } else {
     var sb=statusBox(p);
-    contactHtml=sb||"<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap the green <b>INTERESTED</b> button — contact details will arrive by email.</div>";
+    contactHtml=sb||"<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap <b>INTERESTED</b>.</div>";
   }
   var srcTag=p.source?"<span class='src'>"+esc(p.source)+"</span>":"";
   var matchBadge=(p.match>0)?"<span class='badge'>"+p.match+"% match</span>":"";
@@ -344,14 +367,9 @@ function card(p){
       (chips.length?"<div class='chips'>"+chips.map(function(c){return "<span class='chip'>"+esc(c)+"</span>";}).join("")+"</div>":"")+
       (oc?"<div style='font-size:13px;margin-bottom:8px'>💼 "+esc(oc)+"</div>":"")+
       (p.message?"<div style='font-size:13px;background:#f6f2ed;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-style:italic;color:var(--brown2)'>💬 "+esc(p.message)+"</div>":"")+
-      (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+" <span style='color:var(--muted)'>(hover for breakdown)</span></div>":"")+
-      "<details><summary>Full profile, family &amp; expectations</summary>"+
-        "<div class='sec'><h4>Profile Details</h4>"+kvtable(p.details)+"</div>"+
-        "<div class='sec'><h4>Family Background</h4>"+kvtable(p.family)+"</div>"+
-        "<div class='sec'><h4>Expectation</h4>"+kvtable(p.expectation)+"</div>"+
-      "</details>"+
+      (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+"</div>":"")+
       contactHtml+
-      "<div class='actions'><a class='btn' href='"+p.link+"' target='_blank'>View live profile</a><a class='btn primary' href='"+p.link+"' target='_blank'>Express interest →</a></div>"+
+      "<div class='actions'><button class='btn-more' onclick='openModal(\""+esc(p.regno)+"\")'>View details</button><a class='btn primary' href='"+p.link+"' target='_blank'>Open live →</a></div>"+
     "</div></div>";
 }
 function nav(btn,dir){var w=btn.closest('.photoWrap');var imgs=w.querySelectorAll('img');var dots=w.querySelectorAll('.dot');var cur=0;imgs.forEach(function(im,i){if(im.style.display!=='none')cur=i;});var n=(cur+dir+imgs.length)%imgs.length;show(w,n);}
@@ -385,10 +403,61 @@ function row(p){
     "</div>"+
     "<div class='right'>"+
       (matchInline?"<div class='m'>"+matchInline+"</div>":"")+
+      "<button class='btn-more' style='padding:4px 8px;font-size:11px' onclick='openModal(\""+esc(p.regno)+"\")'>Details</button>"+
       "<a href='"+p.link+"' target='_blank'>Open →</a>"+
     "</div>"+
   "</div>";
 }
+
+function openModal(regno){
+  var p=P.find(function(x){return x.regno===regno;});
+  if(!p)return;
+  document.getElementById('mTitle').textContent=(p.surname||p.regno);
+  var sub=[];
+  if(p.surname)sub.push(p.regno);
+  if(p.source)sub.push(p.source);
+  if(p.match>0)sub.push(p.match+"% match");
+  if(p.gun)sub.push("★ "+p.gun);
+  document.getElementById('mSub').textContent=sub.join(" · ");
+  var body="";
+  // Contact details (top, since most important)
+  if(p.contact){
+    var c=p.contact, phones=(c.phones||"").split(",").map(function(x){x=x.trim();return x?"<a href='tel:"+esc(x)+"'>"+esc(x)+"</a>":"";}).filter(Boolean).join(", ");
+    body+="<div class='contact'><h4>Contact</h4>"+
+      "<div><b>"+esc(c.name||"")+"</b></div>"+
+      (c.address?"<div>"+esc(c.address)+"</div>":"")+
+      (phones?"<div>📞 "+phones+"</div>":"")+
+      (c.email?"<div>📧 <a href='mailto:"+esc(c.email)+"'>"+esc(c.email)+"</a></div>":"")+
+      "</div>";
+  }
+  if(p.gunBreak){body+="<h4>Gun Milan breakdown</h4><div style='font-size:13px;color:var(--ink);background:var(--cream);padding:8px 10px;border-radius:8px;'>"+esc(p.gunBreak)+"</div>";}
+  if(p.message){body+="<h4>Sent message</h4><div style='font-size:13px;color:var(--brown2);background:var(--cream);padding:8px 10px;border-radius:8px;font-style:italic'>"+esc(p.message)+"</div>";}
+  if(p.details&&p.details.length){body+="<h4>Profile Details</h4>"+kvtable(p.details);}
+  if(p.family&&p.family.length){body+="<h4>Family Background</h4>"+kvtable(p.family);}
+  if(p.expectation&&p.expectation.length){body+="<h4>Expectation</h4>"+kvtable(p.expectation);}
+  // Photos thumbnail strip
+  if(p.photos&&p.photos.length>1){
+    body+="<h4>Photos</h4><div style='display:flex;gap:6px;flex-wrap:wrap;'>";
+    p.photos.forEach(function(u){
+      body+="<a href='"+u+"' target='_blank'><img src='"+u+"' style='width:80px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--line);' onerror=\"this.style.display='none'\"/></a>";
+    });
+    body+="</div>";
+  }
+  // Status info at bottom
+  body+="<h4>Status</h4><div style='font-size:13px'>";
+  if(p.direction)body+="Direction: <b>"+esc(p.direction)+"</b><br>";
+  if(p.status)body+="Status: <b>"+esc(p.status)+"</b><br>";
+  if(p.statusDate)body+="Date: "+esc(p.statusDate)+"<br>";
+  if(p.firstSeen)body+="First seen: "+esc(p.firstSeen)+"<br>";
+  if(p.declineReason)body+="Reason: "+esc(p.declineReason)+"<br>";
+  body+="</div>";
+  document.getElementById('mBody').innerHTML=body;
+  document.getElementById('modalBack').classList.add('on');
+}
+function closeModal(){
+  document.getElementById('modalBack').classList.remove('on');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
 function currentView(){return localStorage.getItem('am_view')||'card';}
 function setView(v){localStorage.setItem('am_view',v);Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.classList.toggle('on',b.getAttribute('data-v')===v);});render();}
