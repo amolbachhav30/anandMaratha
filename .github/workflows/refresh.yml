@@ -1,0 +1,52 @@
+name: Refresh profiles
+
+on:
+  # Schedule is intentionally disabled until the scraper is finished AND a
+  # working auth method (likely saved cookies, not Google password) is set up.
+  # Re-enable by uncommenting the schedule block below.
+  # schedule:
+  #   - cron: '30 3 * * *'   # 03:30 UTC = 09:00 IST daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Scrape interested profiles
+        env:
+          AM_USERNAME: ${{ secrets.AM_USERNAME }}
+          AM_PASSWORD: ${{ secrets.AM_PASSWORD }}
+          AM_MY_PROFILE_ID: ${{ secrets.AM_MY_PROFILE_ID }}
+          AM_GENERATED_FOR: ${{ secrets.AM_GENERATED_FOR }}
+        run: python scripts/scrape.py
+
+      - name: Rebuild index.html
+        run: python build.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "anandmaratha-bot"
+          git config user.email "anandmaratha-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add data/profiles.json index.html
+            git commit -m "Daily refresh $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes."
+          fi

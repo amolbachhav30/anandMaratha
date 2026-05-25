@@ -1,0 +1,20 @@
+# --- Secrets — never commit ---
+Secret.rtf
+secret.rtf
+.env
+.env.*
+*.pem
+auth.json
+cookies.json
+
+# --- Local junk ---
+.DS_Store
+.claude/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Old extracted copies (the canonical dashboard lives at repo root) ---
+AanandMaratha-dashboard/
+AanandMaratha-dashboard.zip
