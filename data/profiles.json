@@ -13716,7 +13716,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -13897,7 +13897,12 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": {
+        "name": "PRAGATI (daughter of SURESH YADAVRAO BOHARE)",
+        "address": "PRAGATI SURESH BOHARE, Gandharva Nagari, Nashik Road",
+        "phones": "9421388459",
+        "email": "suresh.bohare12@gmail.com"
+      }
     },
     {
       "regno": "MV24747",
@@ -22652,7 +22657,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -22829,7 +22834,12 @@
           "DOCTOR."
         ]
       ],
-      "contact": null
+      "contact": {
+        "name": "POOJA (daughter of Chandrashekhar Rambhau Mhaske)",
+        "address": "Pooja Chandrashekhar Mhaske,Sonai DIST-AHILYANAGAR  Now @ Nashik",
+        "phones": "9371930639",
+        "email": "abhisheknasik@gmail.com"
+      }
     },
     {
       "regno": "MV26049",
@@ -23255,7 +23265,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -23444,7 +23454,12 @@
           "match and well educated"
         ]
       ],
-      "contact": null
+      "contact": {
+        "name": "Ashwini (daughter of KAILAS BHILA SURYAWANSHI)",
+        "address": "Ashwini KAILAS SURYAWANSHI,SAUNDANE TAL-MALEGAON  now @ KALIKA NAGAR,UNTWADI",
+        "phones": "9561586108",
+        "email": "kailassuryawanshi534@gmail.com"
+      }
     },
     {
       "regno": "MV26286",
@@ -24276,7 +24291,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -24461,7 +24476,12 @@
           "MATCH AND WELL EEDUCTAED"
         ]
       ],
-      "contact": null
+      "contact": {
+        "name": "Vaishali (daughter of BALASAHEB MURLIDHAR BHILAR)",
+        "address": "VAISHALI BALASAHEB BHILAR, NASHIK",
+        "phones": "91--, 9552459305",
+        "email": "vaishu01bhilar@gmail.com"
+      }
     },
     {
       "regno": "MV23549",
