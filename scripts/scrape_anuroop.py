@@ -226,17 +226,24 @@ def merge_into_db(profiles: list, db_path: Path) -> tuple:
         key = (prof["source"], prof["regno"])
         existing = by_key.get(key)
         if existing:
-            # Preserve firstSeen + contact (if any) from existing
             prof["firstSeen"] = existing.get("firstSeen", prof["firstSeen"])
             if existing.get("contact"):
                 prof["contact"] = existing["contact"]
-            # Replace in place
+            for keep in ("details", "family", "expectation", "photos", "surname", "crm"):
+                if existing.get(keep) and not prof.get(keep):
+                    prof[keep] = existing[keep]
             for i, p in enumerate(db["profiles"]):
                 if (p.get("source"), p.get("regno")) == key:
                     db["profiles"][i] = prof
                     break
             updated += 1
         else:
+            prof.setdefault("crm", {
+                "stage": "closed-no" if prof.get("status") == "declined"
+                         else ("contact" if prof.get("contact") else "interest"),
+                "next_action": "", "next_action_due": "",
+                "history": [], "closed_reason": "", "notes": "",
+            })
             db["profiles"].append(prof)
             added += 1
     sources = set(db.get("sources", []))

@@ -1904,7 +1904,7 @@
       "details": [
         [
           "Age",
-          "32 Years 0 Months"
+          "32 Years 1 Months"
         ],
         [
           "Height",
@@ -2374,7 +2374,7 @@
       "details": [
         [
           "Age",
-          "35 Years 8 Months"
+          "35 Years 9 Months"
         ],
         [
           "Height",
@@ -2787,7 +2787,7 @@
       "gun": "",
       "gunBreak": "",
       "photos": [
-        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/111202683044PM_898035_image_1768143641312.jpg"
+        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/111202670445PM_898035_image_1768138481667.jpg"
       ],
       "firstSeen": "2026-05-06",
       "direction": "sent",
@@ -2885,9 +2885,9 @@
       ],
       "firstSeen": "2026-01-11",
       "direction": "sent",
-      "status": "pending",
-      "statusDate": "Jan 11 2026 7:57PM",
-      "declineReason": "",
+      "status": "declined",
+      "statusDate": "May 25 2026 10:21PM",
+      "declineReason": "Not a suitable match",
       "details": [
         [
           "Age",
@@ -2910,7 +2910,7 @@
       "expectation": [],
       "contact": null,
       "crm": {
-        "stage": "interest",
+        "stage": "closed-no",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -3752,7 +3752,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -3933,9 +3933,14 @@
           "Well educated, settled"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "Tejashree (daughter of Sanjay Gunjal)",
+        "address": "Nashik Road, Nashik",
+        "phones": "91--, 8605415216",
+        "email": "tejashreegunjal07@gmail.com"
+      },
       "crm": {
-        "stage": "interest",
+        "stage": "contact",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -5448,7 +5453,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -5637,9 +5642,14 @@
           "looking for a Well educated,supportive partner Working in Mumbai/ with Permanent WFH"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "Ankita (daughter of Arun Babulal Bhadane)",
+        "address": "Ankita Arun Bhadane,\r\nVIRKHEL TAL-SAKRI DIST-DHULE Settled in Pune",
+        "phones": "91--, 9284798653",
+        "email": "arunbhadane91@gmail.com"
+      },
       "crm": {
-        "stage": "interest",
+        "stage": "contact",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -8004,7 +8014,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -8189,9 +8199,14 @@
           "M.B.B.S.,M.D.,M.S.,B.A.M.S. BE,ME, Btech,class1 officer, government officer"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "ISHWARI (daughter of SURESH MAHADU KAPADNE)",
+        "address": "ISHWARI SURESH KAPADANE,JANVE TAL-AMALNER DIST-JALGAON NOW @ DEOPUR ,DHULE",
+        "phones": "8668695602",
+        "email": "ishwarikapadne@gmail.com"
+      },
       "crm": {
-        "stage": "interest",
+        "stage": "contact",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -11360,7 +11375,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "accepted",
+      "status": "pending",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -13266,7 +13281,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "We found your profile to be a good match. Please contact us to proceed further.",
       "details": [
@@ -13455,9 +13470,14 @@
           "match and well educated"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "SNEHAL (daughter of Laxman motiram borse)",
+        "address": "Snehal Laxman Borse., Meshi Tal-Deola Dist-nashik NOW @ Room no 1858,satpur colony nashik",
+        "phones": "9067028494",
+        "email": "snehalborse7385@gmail.com"
+      },
       "crm": {
-        "stage": "interest",
+        "stage": "contact",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -14532,7 +14552,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "accepted",
+      "status": "pending",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -23825,7 +23845,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "accepted",
+      "status": "pending",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -24457,7 +24477,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "accepted",
+      "status": "pending",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -25523,7 +25543,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "accepted",
+      "status": "pending",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -26380,7 +26400,7 @@
       ],
       "firstSeen": "2026-05-23",
       "direction": "sent",
-      "status": "pending",
+      "status": "accepted",
       "statusDate": "2026-05-23",
       "message": "I am interested in your profile. If you are interested in my profile, please contact me.",
       "details": [
@@ -26565,9 +26585,14 @@
           "Match and well educated"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "KAMINI (daughter of Late Sanjay Sitaram Pagar)",
+        "address": "Kamini Sanjay Pagar\r\nAstane Tal-Malegaon Dist-Nashik",
+        "phones": "9637945710, 9637945710",
+        "email": "kamuspatil2793@gmail.com"
+      },
       "crm": {
-        "stage": "interest",
+        "stage": "contact",
         "next_action": "",
         "next_action_due": "",
         "history": [],
@@ -26988,6 +27013,502 @@
         ]
       ],
       "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "FF31997",
+      "surname": "Priyanka",
+      "mgid": "791293",
+      "source": "Anuroop",
+      "link": "https://www.anuroopwiwaha.com/User/MemberProfile.aspx?member_id=791293",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [
+        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/68202545640PM_791293_image_1749381996843.jpg"
+      ],
+      "firstSeen": "2026-05-26",
+      "direction": "sent",
+      "status": "declined",
+      "statusDate": "May 26 2026 8:52AM",
+      "declineReason": "Not a suitable match",
+      "details": [
+        [
+          "Age",
+          "33"
+        ],
+        [
+          "Height",
+          "5.1 ft"
+        ],
+        [
+          "Education",
+          "B.E."
+        ],
+        [
+          "Location",
+          "Mumbai, India"
+        ]
+      ],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "FQ11512",
+      "surname": "Kalyani Ghadi",
+      "mgid": "920335",
+      "source": "Anuroop",
+      "link": "https://www.anuroopwiwaha.com/User/MemberProfile.aspx?member_id=920335",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [
+        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/4242026100334PM_920335_WhatsAppImage2026-04-24at10.02.23PM.jpg"
+      ],
+      "firstSeen": "2026-05-25",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "May 25 2026 9:07PM",
+      "declineReason": "",
+      "details": [
+        [
+          "Age",
+          "34"
+        ],
+        [
+          "Height",
+          "5.4 ft"
+        ],
+        [
+          "Education",
+          "Bachelor of Information Technology"
+        ],
+        [
+          "Location",
+          "Karnataka, India"
+        ]
+      ],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "WFI09207183727",
+      "surname": "Vishakha Chavan",
+      "mgid": "455553",
+      "source": "Anuroop",
+      "link": "https://www.anuroopwiwaha.com/User/MemberProfile.aspx?member_id=455553",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [
+        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/51202620134AM_455553_image_1777581091603.jpg"
+      ],
+      "firstSeen": "2026-05-25",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "May 25 2026 8:54PM",
+      "declineReason": "",
+      "details": [
+        [
+          "Age",
+          "32"
+        ],
+        [
+          "Height",
+          "5.3 ft"
+        ],
+        [
+          "Education",
+          "Bpth, Mpth"
+        ],
+        [
+          "Location",
+          "Coventry, United Kingdom"
+        ]
+      ],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "WFI04227199503",
+      "surname": "Siddhi Nilwarna",
+      "mgid": "563625",
+      "source": "Anuroop",
+      "link": "https://www.anuroopwiwaha.com/User/MemberProfile.aspx?member_id=563625",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [
+        "https://images.anuroopwiwaha-cdn.com/t_profile_view/AnuroopVadhu/220202643003AM_563625_image_1771542001850.jpg"
+      ],
+      "firstSeen": "2026-05-25",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "May 25 2026 8:43PM",
+      "declineReason": "",
+      "details": [
+        [
+          "Age",
+          "33"
+        ],
+        [
+          "Height",
+          "5.3 ft"
+        ],
+        [
+          "Education",
+          "Masters in Industrial Engineering"
+        ],
+        [
+          "Location",
+          "Allentown, USA / America"
+        ]
+      ],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149016",
+      "surname": "JAGTAP",
+      "mgid": "202075",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/r.php?a=ZGV0YWlscy5waHA/bWdpZD0yMDIwNzUmcmlkPTIwMTkxMyZwPTczJmc9MTg=",
+      "match": 73,
+      "gun": "18/36",
+      "gunBreak": "Varna 1/1, Vashya 0/2, Nakshtra 1.5/3, Yoni 2/4, Maitri 0.5/5, Gan 6/6, Ras 7/7, Nadi 0/8",
+      "photos": [
+        "https://www.anandmaratha.com/girls/mg149016.jpg",
+        "https://www.anandmaratha.com/girls/mg149016-2.jpg"
+      ],
+      "details": [
+        [
+          "Date Of Birth",
+          "25/10/1991"
+        ],
+        [
+          "Sex",
+          "FEMALE"
+        ],
+        [
+          "Height",
+          "5' 05\""
+        ],
+        [
+          "Caste",
+          "96 KULI"
+        ],
+        [
+          "Education",
+          "MS FROM MICHIGAN TECH UNIVERSITY"
+        ],
+        [
+          "Occupation",
+          "MANAGER HR (IT) FOR WILO GLOBAL (GERMANY) (WORKING REMOTELY) THANE (MUMBAI)"
+        ],
+        [
+          "Blood Group / Weight",
+          "O+ / --kg"
+        ],
+        [
+          "Spectacle / Lens",
+          "No/No"
+        ],
+        [
+          "Complexion",
+          "FAIR"
+        ],
+        [
+          "Gotra & Devak",
+          "VADACHE ZAAD"
+        ],
+        [
+          "Birth Place",
+          "MUMBAI 03:14 PM"
+        ],
+        [
+          "Mangal",
+          "No"
+        ],
+        [
+          "Diet",
+          "NON VEGETARIAN"
+        ],
+        [
+          "Horo Details",
+          "UNSPECIFIED/UNSPECIFIED/UNSPECIFIED/UNSPECIFIED/UNSPECIFIED"
+        ]
+      ],
+      "family": [
+        [
+          "Father",
+          "No"
+        ],
+        [
+          "Mother",
+          "Yes"
+        ],
+        [
+          "Brother",
+          "0"
+        ],
+        [
+          "Sister",
+          "0"
+        ],
+        [
+          "Mama",
+          "KALDATE A NAGAR"
+        ],
+        [
+          "Relatives",
+          "[DALVI, DEVKAR, KUTE, BANDAL, SALUNKHE, DAULE, GUNJAL, GITE, GAIKWAD, PAWAR, CHEMTE, THORAT, LAD, KAVATKAR, KADAM, PATIL, SHITOLE DESHMUKH, KALE DESHMUKH]"
+        ],
+        [
+          "Parents Residing In",
+          "THANE"
+        ],
+        [
+          "Native Place",
+          "A.NAGAR-SHRIGONDA"
+        ],
+        [
+          "Family Wealth",
+          "2 BHK FLAT IN THANE"
+        ]
+      ],
+      "expectation": [
+        [
+          "Age Difference Upto",
+          "4 YEARS"
+        ],
+        [
+          "Expected Height",
+          "5' 08\" +"
+        ],
+        [
+          "Education",
+          "MASTERS IN ENGINEERING IN ANY FIELD"
+        ],
+        [
+          "Occupation",
+          "SERVICE"
+        ],
+        [
+          "Expected Caste",
+          "96 KULI MARATHA"
+        ],
+        [
+          "Divorcee",
+          "NO"
+        ],
+        [
+          "Mangal",
+          "Does Not Matter"
+        ],
+        [
+          "Preferred City",
+          "MUMBAI, THANE, PUNE, ABROAD"
+        ]
+      ],
+      "contact": null,
+      "firstSeen": "2026-05-27",
+      "crm": {
+        "stage": "interest",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG148423",
+      "surname": "SALUNKHE",
+      "mgid": "200648",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/r.php?a=ZGV0YWlscy5waHA/bWdpZD0yMDA2NDgmcmlkPTIwMTkxMyZwPTc4Jmc9Mjk=",
+      "match": 78,
+      "gun": "29/36",
+      "gunBreak": "Varna 1/1, Vashya 2/2, Nakshtra 3/3, Yoni 2/4, Maitri 5/5, Gan 1/6, Ras 7/7, Nadi 8/8",
+      "photos": [
+        "https://www.anandmaratha.com/girls/mg148423.jpg",
+        "https://www.anandmaratha.com/girls/mg148423-2.jpg"
+      ],
+      "details": [
+        [
+          "Date Of Birth",
+          "12/07/1991"
+        ],
+        [
+          "Sex",
+          "FEMALE"
+        ],
+        [
+          "Height",
+          "5' 01\""
+        ],
+        [
+          "Caste",
+          "96 KULI"
+        ],
+        [
+          "Education",
+          "M.SC MICRO, NET, PHD"
+        ],
+        [
+          "Occupation",
+          "PROJECT MANAGER PUNE / 10L PA"
+        ],
+        [
+          "Blood Group / Weight",
+          "AB+ / --kg"
+        ],
+        [
+          "Spectacle / Lens",
+          "Yes/No"
+        ],
+        [
+          "Complexion",
+          "GORA"
+        ],
+        [
+          "Gotra & Devak",
+          "BHARADWAJ,PACHPALAVI"
+        ],
+        [
+          "Birth Place",
+          "SANGLI 07:05 PM"
+        ],
+        [
+          "Mangal",
+          "No"
+        ],
+        [
+          "Diet",
+          "VEGETARIAN"
+        ],
+        [
+          "Horo Details",
+          "KARK/PUNARVASU/2/MADHYA/DEV GAN"
+        ]
+      ],
+      "family": [
+        [
+          "Father",
+          "Yes"
+        ],
+        [
+          "Mother",
+          "Yes"
+        ],
+        [
+          "Brother",
+          "1 UNMARRIED"
+        ],
+        [
+          "Sister",
+          "0"
+        ],
+        [
+          "Mama",
+          "DR. MANE, SANGLI"
+        ],
+        [
+          "Relatives",
+          "[MANE, PATIL, SHINDE, KHABALE, RAJE GHATAGE, YADAV, CHAVAN, PAWAR, RANSING, SHINDE]"
+        ],
+        [
+          "Parents Residing In",
+          "SANGLI"
+        ],
+        [
+          "Native Place",
+          "SANGLI-MIRAJ"
+        ],
+        [
+          "Family Wealth",
+          "MIDDLE CLASS"
+        ]
+      ],
+      "expectation": [
+        [
+          "Age Difference Upto",
+          "3 YEARS"
+        ],
+        [
+          "Expected Height",
+          "5' 06\" +"
+        ],
+        [
+          "Education",
+          "PHD, MS, POST GRADUATE, M.TECH, MBA"
+        ],
+        [
+          "Occupation",
+          "RESEARCHER, PROFESSOR, GOVERNMENT CLASS 1 OFFICER, PRIVATE JOB"
+        ],
+        [
+          "Expected Caste",
+          "DOES NOT MATTER"
+        ],
+        [
+          "Divorcee",
+          "NO"
+        ],
+        [
+          "Mangal",
+          "No"
+        ],
+        [
+          "Preferred City",
+          "SANGLI, KOLHAPUR, PUNE, SATARA, ABROAD, MUMBAI, ETC"
+        ]
+      ],
+      "contact": null,
+      "firstSeen": "2026-05-27",
       "crm": {
         "stage": "interest",
         "next_action": "",
