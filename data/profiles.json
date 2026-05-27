@@ -24673,11 +24673,18 @@
         "email": "kailassuryawanshi534@gmail.com"
       },
       "crm": {
-        "stage": "contact",
-        "next_action": "",
-        "next_action_due": "",
-        "history": [],
-        "closed_reason": "",
+        "stage": "closed-no",
+        "next_action": "Call again",
+        "next_action_due": "2026-05-28",
+        "history": [
+          {
+            "date": "2026-05-27",
+            "from": "contact",
+            "to": "closed-no",
+            "note": "Didn't pickup call"
+          }
+        ],
+        "closed_reason": "Didn't pickup call",
         "notes": ""
       }
     },

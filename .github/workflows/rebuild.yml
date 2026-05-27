@@ -1,0 +1,44 @@
+name: Rebuild index.html on data change
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/profiles.json'
+      - 'build.py'
+      - 'requirements.txt'
+
+permissions:
+  contents: write
+
+# Avoid recursion: skip when this very workflow's own bot commit triggers it.
+jobs:
+  rebuild:
+    if: ${{ !contains(github.event.head_commit.message, '[skip rebuild]') && github.event.head_commit.author.email != 'anandmaratha-rebuild@users.noreply.github.com' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install --quiet -r requirements.txt
+
+      - name: Rebuild index.html
+        run: python build.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "anandmaratha-rebuild"
+          git config user.email "anandmaratha-rebuild@users.noreply.github.com"
+          if [ -n "$(git status --porcelain index.html)" ]; then
+            git add index.html
+            git commit -m "Rebuild index.html [skip rebuild]"
+            git push
+          else
+            echo "index.html unchanged."
+          fi
