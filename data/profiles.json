@@ -466,10 +466,17 @@
       },
       "firstSeen": "2026-05-22",
       "crm": {
-        "stage": "contact",
-        "next_action": "",
-        "next_action_due": "",
-        "history": [],
+        "stage": "talking",
+        "next_action": "Expecting to schedule a all",
+        "next_action_due": "2026-05-29",
+        "history": [
+          {
+            "date": "2026-05-27",
+            "from": "contact",
+            "to": "talking",
+            "note": "Messaged her."
+          }
+        ],
         "closed_reason": "",
         "notes": ""
       }
