@@ -930,10 +930,17 @@
       "contact": null,
       "firstSeen": "2026-05-20",
       "crm": {
-        "stage": "interest",
-        "next_action": "",
+        "stage": "requested",
+        "next_action": "wait for Response email",
         "next_action_due": "",
-        "history": [],
+        "history": [
+          {
+            "date": "2026-05-28",
+            "from": "interest",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
         "closed_reason": "",
         "notes": ""
       }
@@ -1080,10 +1087,17 @@
       "contact": null,
       "firstSeen": "2026-05-18",
       "crm": {
-        "stage": "interest",
-        "next_action": "",
+        "stage": "requested",
+        "next_action": "wait for Response email",
         "next_action_due": "",
-        "history": [],
+        "history": [
+          {
+            "date": "2026-05-28",
+            "from": "interest",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
         "closed_reason": "",
         "notes": ""
       }
@@ -27542,10 +27556,17 @@
       },
       "firstSeen": "2026-05-27",
       "crm": {
-        "stage": "interest",
-        "next_action": "",
+        "stage": "requested",
+        "next_action": "wait for Response email",
         "next_action_due": "",
-        "history": [],
+        "history": [
+          {
+            "date": "2026-05-28",
+            "from": "interest",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
         "closed_reason": "",
         "notes": ""
       }
