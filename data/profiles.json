@@ -27665,10 +27665,16 @@
             "from": "new",
             "to": "contact",
             "note": "bulk-response contact received"
+          },
+          {
+            "date": "2026-05-28",
+            "from": "contact",
+            "to": "contact",
+            "note": "Wadilanshi bolana zala. contact share karnar ahe."
           }
         ],
-        "next_action": "",
-        "next_action_due": "",
+        "next_action": "Amol cha contact mulichya wadilana pathwana.",
+        "next_action_due": "2026-05-30",
         "closed_reason": "",
         "notes": ""
       }
