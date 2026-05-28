@@ -1229,10 +1229,17 @@
       },
       "firstSeen": "2026-05-21",
       "crm": {
-        "stage": "contact",
-        "next_action": "",
-        "next_action_due": "",
-        "history": [],
+        "stage": "talking",
+        "next_action": "Asked to meet on Sunday 31st",
+        "next_action_due": "2026-05-30",
+        "history": [
+          {
+            "date": "2026-05-28",
+            "from": "contact",
+            "to": "talking",
+            "note": "1. Expectation understanding haway. Samjun ghyawa. Family support. \n2. Girl Mom-> Teacher\n3. SAP BI-> Siemense APO, PPO, GAPT Data Spehre.\n4. Girls Dad-> RETD Post office. Post Master. \n5. Aplexis Technologies-> \n6. One Sister -> 3 years less baglore-> Web development\n7. Brother-> 5.5 years- > Business\n8. Lagna late zala-> vulenerability. ->  \n9. Bolayala Changli ahe.\n10 Interview dyayala gela. \n11. Hobbie-> Badminton, Classical Dancer, Zumba. \n12. Ghrata baghawala lagata. (Aai)\n13. Netflix->Trekking\n14. Raag ala tar shant basate."
+          }
+        ],
         "closed_reason": "",
         "notes": ""
       }
