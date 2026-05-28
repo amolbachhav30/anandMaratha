@@ -372,10 +372,10 @@ HTML = """<!DOCTYPE html>
       <button onclick="closeBulk()" aria-label="Close">×</button>
     </div>
     <div class="mbody">
-      <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Enter up to 10 Anand Maratha regnos (MGxxxxxx), one per line.</p>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Enter up to 10 Anand Maratha regnos (MGxxxxxx). Separator can be a <b>new line, space, tab, or comma</b> — any mix works. Letters are auto-uppercased.</p>
       <p style="font-size:12px;color:var(--muted);margin:0 0 14px">Suggested from your <b>Interest</b>-stage Anand Maratha profiles below. Click any to add it.</p>
       <div id="bulkSuggest" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;max-height:120px;overflow-y:auto;"></div>
-      <textarea id="bulkInput" rows="10" style="width:100%;font-family:monospace;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;" placeholder="MG149065&#10;MG148979&#10;MG148743&#10;..."></textarea>
+      <textarea id="bulkInput" rows="8" style="width:100%;font-family:monospace;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-transform:uppercase;" placeholder="MG149065 MG148979 MG148743 …"></textarea>
       <div class="actions" style="display:flex;gap:8px;margin-top:14px">
         <button class="outline" onclick="closeBulk()" style="flex:1;padding:10px;border-radius:8px;background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:600;cursor:pointer">Cancel</button>
         <button onclick="submitBulk()" id="bulkSubmit" style="flex:2;padding:10px;border-radius:8px;background:var(--brown);color:#fff;border:none;font-weight:600;cursor:pointer">Submit &amp; open form →</button>
@@ -856,6 +856,11 @@ function openBulk(){
 function closeBulk(){document.getElementById('bulkBack').style.display='none';}
 
 document.getElementById('bulkReqBtn').addEventListener('click',openBulk);
+document.getElementById('bulkInput').addEventListener('input',function(e){
+  var pos=e.target.selectionStart;
+  var up=e.target.value.toUpperCase();
+  if(up!==e.target.value){e.target.value=up;e.target.setSelectionRange(pos,pos);}
+});
 document.addEventListener('click',function(e){
   var s=e.target.closest('.bulk-sug');
   if(s && s.dataset.regno){
