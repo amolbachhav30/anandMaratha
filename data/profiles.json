@@ -3943,7 +3943,7 @@
       "contact": {
         "name": "Tejashree (daughter of Sanjay Gunjal)",
         "address": "Nashik Road, Nashik",
-        "phones": "91--, 8605415216",
+        "phones": "8605415216",
         "email": "tejashreegunjal07@gmail.com"
       },
       "crm": {
@@ -5652,7 +5652,7 @@
       "contact": {
         "name": "Ankita (daughter of Arun Babulal Bhadane)",
         "address": "Ankita Arun Bhadane,\r\nVIRKHEL TAL-SAKRI DIST-DHULE Settled in Pune",
-        "phones": "91--, 9284798653",
+        "phones": "9284798653",
         "email": "arunbhadane91@gmail.com"
       },
       "crm": {
@@ -25745,7 +25745,7 @@
       "contact": {
         "name": "Vaishali (daughter of BALASAHEB MURLIDHAR BHILAR)",
         "address": "VAISHALI BALASAHEB BHILAR, NASHIK",
-        "phones": "91--, 9552459305",
+        "phones": "9552459305",
         "email": "vaishu01bhilar@gmail.com"
       },
       "crm": {
@@ -27521,7 +27521,15 @@
           "SANGLI, KOLHAPUR, PUNE, SATARA, ABROAD, MUMBAI, ETC"
         ]
       ],
-      "contact": null,
+      "contact": {
+        "name": "VAISHNAVI HARIBHAU SALUNKHE",
+        "address": "1, SHRI RAMSAHILYA APPT, NEAR GANPATI MANDIR, VISHRAMBAG, SANGLI-416415",
+        "phones": [
+          "8275377013",
+          "8275377013"
+        ],
+        "email": "hbsalunkhe750@gmail.com"
+      },
       "firstSeen": "2026-05-27",
       "crm": {
         "stage": "interest",

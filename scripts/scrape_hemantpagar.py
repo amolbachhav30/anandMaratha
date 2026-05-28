@@ -275,11 +275,13 @@ def fetch_contact_details(opener, regno: str):
     if any("limit" in t.lower() and ("exceed" in t.lower() or "reached" in t.lower()) for t in tokens):
         return {"_quota_exceeded": True}
 
-    # Combine phone + mobile, drop "--"
+    # Combine phone + mobile fields, keep only entries with at least 7 digits.
+    # Site sometimes shows placeholders like "--" or "91--" when a field is empty.
     phones_parts = []
     for k in ("phone", "mobile", "contact number"):
         v = info.get(k, "").strip()
-        if v and v != "--":
+        digits_only = re.sub(r"\D", "", v)
+        if len(digits_only) >= 7:
             phones_parts.append(v)
     phones = ", ".join(phones_parts)
 
