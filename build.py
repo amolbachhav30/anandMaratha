@@ -373,6 +373,11 @@ HTML = """<!DOCTYPE html>
     </div>
     <div class="mbody">
       <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Enter up to 10 Anand Maratha regnos (MGxxxxxx). Separator can be a <b>new line, space, tab, or comma</b> — any mix works. Letters are auto-uppercased.</p>
+      <div style="background:#fff8e6;border:1px solid #ecd99a;border-radius:8px;padding:10px 12px;font-size:12px;margin:0 0 14px;color:#876d12">
+        <b>One-time setup for fast form-fill:</b> drag this link to your bookmarks bar →
+        <a id="amFillLink" style="background:var(--brown);color:#fff;text-decoration:none;padding:3px 9px;border-radius:6px;font-weight:600;font-size:11px;margin:0 4px;cursor:move" draggable="true">📥 AM Bulk Fill</a>
+        Then after Submit, click that bookmark on the form page → all fields auto-fill. You only solve the CAPTCHA + submit.
+      </div>
       <p style="font-size:12px;color:var(--muted);margin:0 0 14px">Suggested from your <b>Interest</b>-stage Anand Maratha profiles below. Click any to add it.</p>
       <div id="bulkSuggest" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;max-height:120px;overflow-y:auto;"></div>
       <textarea id="bulkInput" rows="8" style="width:100%;font-family:monospace;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;text-transform:uppercase;" placeholder="MG149065 MG148979 MG148743 …"></textarea>
@@ -841,7 +846,16 @@ document.addEventListener('click',async function(e){
 document.getElementById('gearBtn').addEventListener('click',openSettings);
 
 // ---------- Bulk request flow ----------
+// The bookmarklet source — kept short so the encoded URL fits in a bookmark.
+var AM_FILL_JS = "(function(){var p=new URLSearchParams(location.hash.slice(1));var f=function(s,v){var e=document.querySelector(s);if(e&&v)e.value=v;};f('input[name=reg_no]',p.get('regno'));f('input[name=email]',p.get('email'));var ids=(p.get('reg')||'').split(',').filter(Boolean);document.querySelectorAll('input[name=\\\"reg[]\\\"]').forEach(function(el,i){if(ids[i])el.value=ids[i];});var c=document.querySelector('input[name=consent]');if(c)c.checked=true;var v=document.querySelector('input[name=verify]');if(v)v.focus();})();";
+
+function setupBookmarkletLink(){
+  var a=document.getElementById('amFillLink');
+  if(a)a.href='javascript:'+encodeURIComponent(AM_FILL_JS);
+}
+
 function openBulk(){
+  setupBookmarkletLink();
   // Build suggestions: Anand Maratha + Interest stage, sorted by match% desc
   var sug=P.filter(function(p){return p.source==='Anand Maratha' && stageOf(p)==='interest';});
   sug.sort(function(a,b){return (b.match||0)-(a.match||0);});
@@ -920,14 +934,19 @@ async function submitBulk(){
     P=db.profiles;
     closeBulk();
     stats();render();
-    // Copy IDs to clipboard
+    // Copy IDs to clipboard as a backup if bookmarklet not installed
     try{await navigator.clipboard.writeText(ids.join('\\n'));}catch(e){}
-    // Show post-submit instructions
+    // Build the form URL with all needed data in the URL hash so the
+    // AM Bulk Fill bookmarklet can read it once the user clicks the bookmark.
+    var hash='regno=MB112528'+
+             '&email='+encodeURIComponent('amolbachhav@gmail.com')+
+             '&reg='+encodeURIComponent(ids.join(','));
+    var url='https://www.anandmaratha.com/response.php#'+hash;
     var msg='✓ Saved. '+ids.length+' marked as Requested.';
     if(missing.length)msg+=' ('+missing.length+' new stubs added.)';
-    msg+=' IDs copied to clipboard. Opening the Response form now — paste IDs into fields, solve CAPTCHA, submit.';
+    msg+=' Opening form — click your AM Bulk Fill bookmark there to auto-fill.';
     toast(msg,'ok');
-    setTimeout(function(){window.open('https://www.anandmaratha.com/response.php','_blank');},400);
+    setTimeout(function(){window.open(url,'_blank');},400);
   }catch(e){
     status.textContent='Error: '+e.message;status.style.color='#c0392b';
     console.error(e);
