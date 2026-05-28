@@ -61,6 +61,7 @@ HTML = """<!DOCTYPE html>
   .stage{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;letter-spacing:.2px;margin-right:4px;}
   .stage[data-s="new"]{background:#eee;color:#555;}
   .stage[data-s="interest"]{background:#eef3f8;color:#3c5a78;border:1px solid #d6e1ec;}
+  .stage[data-s="requested"]{background:#fff0db;color:#7a4a00;border:1px solid #ecd5a9;}
   .stage[data-s="contact"]{background:#ece6f5;color:#5c4480;border:1px solid #d4c8e6;}
   .stage[data-s="talking"]{background:#fff0db;color:#7a4a00;border:1px solid #ecd5a9;}
   .stage[data-s="meeting"]{background:#e7f5e8;color:#2e7d32;border:1px solid #cfe6cf;}
@@ -273,6 +274,7 @@ HTML = """<!DOCTYPE html>
       <option value="all">Stage: All</option>
       <option value="new">Stage: New</option>
       <option value="interest">Stage: Interest</option>
+      <option value="requested">Stage: Requested</option>
       <option value="contact">Stage: Contact</option>
       <option value="talking">Stage: Talking</option>
       <option value="meeting">Stage: Meeting</option>
@@ -284,6 +286,7 @@ HTML = """<!DOCTYPE html>
       <button data-v="card" class="on">▦ Cards</button>
       <button data-v="list">☰ List</button>
     </div>
+    <button id="bulkReqBtn" class="btn-more" style="background:var(--brown);color:#fff;border-color:var(--brown);">📥 Request bulk contacts</button>
   </div>
   <div id="grid"></div>
 </div>
@@ -327,6 +330,25 @@ HTML = """<!DOCTYPE html>
   </div>
 </div>
 <div id="toast"></div>
+<div id="bulkBack" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:920;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto;" onclick="if(event.target.id==='bulkBack')closeBulk()">
+  <div style="background:#fff;border-radius:14px;max-width:560px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.4);overflow:hidden;">
+    <div class="mhead">
+      <div><h2 style="margin:0;font-size:18px">Request bulk contacts</h2><div class="sub">Anand Maratha Response form · up to 10 IDs per 5 days</div></div>
+      <button onclick="closeBulk()" aria-label="Close">×</button>
+    </div>
+    <div class="mbody">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Enter up to 10 Anand Maratha regnos (MGxxxxxx), one per line.</p>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 14px">Suggested from your <b>Interest</b>-stage Anand Maratha profiles below. Click any to add it.</p>
+      <div id="bulkSuggest" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;max-height:120px;overflow-y:auto;"></div>
+      <textarea id="bulkInput" rows="10" style="width:100%;font-family:monospace;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;" placeholder="MG149065&#10;MG148979&#10;MG148743&#10;..."></textarea>
+      <div class="actions" style="display:flex;gap:8px;margin-top:14px">
+        <button class="outline" onclick="closeBulk()" style="flex:1;padding:10px;border-radius:8px;background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:600;cursor:pointer">Cancel</button>
+        <button onclick="submitBulk()" id="bulkSubmit" style="flex:2;padding:10px;border-radius:8px;background:var(--brown);color:#fff;border:none;font-weight:600;cursor:pointer">Submit &amp; open form →</button>
+      </div>
+      <div id="bulkStatus" style="font-size:13px;margin-top:10px;min-height:18px"></div>
+    </div>
+  </div>
+</div>
 <script>
 const ENC_B64 ="__ENC_B64__";
 const SALT_B64="__SALT_B64__";
@@ -773,6 +795,96 @@ document.addEventListener('click',async function(e){
 
 document.getElementById('gearBtn').addEventListener('click',openSettings);
 
+// ---------- Bulk request flow ----------
+function openBulk(){
+  // Build suggestions: Anand Maratha + Interest stage, sorted by match% desc
+  var sug=P.filter(function(p){return p.source==='Anand Maratha' && stageOf(p)==='interest';});
+  sug.sort(function(a,b){return (b.match||0)-(a.match||0);});
+  var html=sug.slice(0,30).map(function(p){
+    return "<button class='bulk-sug' data-regno='"+esc(p.regno)+"' style='font-size:12px;padding:4px 9px;border-radius:14px;background:#eef3f8;color:#3c5a78;border:1px solid #d6e1ec;cursor:pointer'>"+esc(p.regno)+" ("+(p.match||0)+"%)</button>";
+  }).join('');
+  document.getElementById('bulkSuggest').innerHTML=html||"<i style='font-size:12px;color:var(--muted)'>No Interest-stage Anand Maratha profiles to suggest.</i>";
+  document.getElementById('bulkInput').value='';
+  document.getElementById('bulkStatus').textContent='';
+  document.getElementById('bulkBack').style.display='flex';
+}
+function closeBulk(){document.getElementById('bulkBack').style.display='none';}
+
+document.getElementById('bulkReqBtn').addEventListener('click',openBulk);
+document.addEventListener('click',function(e){
+  var s=e.target.closest('.bulk-sug');
+  if(s && s.dataset.regno){
+    var ta=document.getElementById('bulkInput');
+    var lines=ta.value.split(/[\\n,]+/).map(function(l){return l.trim();}).filter(Boolean);
+    if(lines.indexOf(s.dataset.regno)<0 && lines.length<10){
+      lines.push(s.dataset.regno);
+      ta.value=lines.join('\\n');
+    }
+  }
+});
+
+async function submitBulk(){
+  var pat=getPat();
+  if(!pat){toast('Add a GitHub token in Settings first','err');openSettings();return;}
+  var raw=document.getElementById('bulkInput').value;
+  var ids=raw.split(/[\\n,\\s]+/).map(function(l){return l.trim().toUpperCase();}).filter(function(l){return /^MG\\d+$/.test(l);});
+  ids=Array.from(new Set(ids));
+  var status=document.getElementById('bulkStatus');
+  if(ids.length===0){status.textContent='Enter at least one valid MG regno.';status.style.color='#c0392b';return;}
+  if(ids.length>10){status.textContent='Max 10 IDs allowed. Trimming to 10.';ids=ids.slice(0,10);}
+  status.textContent='Saving '+ids.length+' profile(s) as Requested…';status.style.color='var(--muted)';
+  var btn=document.getElementById('bulkSubmit');btn.disabled=true;btn.textContent='Saving…';
+  try{
+    var file=await ghGetFile('data/profiles.json');
+    var db=JSON.parse(file.content);
+    var today=new Date().toISOString().slice(0,10);
+    var marked=0, missing=[];
+    ids.forEach(function(regno){
+      var found=null;
+      for(var i=0;i<db.profiles.length;i++){if(db.profiles[i].regno===regno){found=db.profiles[i];break;}}
+      if(!found){
+        // Add a stub so it shows up in dashboard with stage=requested
+        db.profiles.push({
+          regno:regno, surname:'', mgid:'', source:'Anand Maratha',
+          link:'https://www.anandmaratha.com/',
+          match:0, gun:'', gunBreak:'', photos:[], firstSeen:today,
+          direction:'sent', status:'pending', statusDate:today,
+          details:[], family:[], expectation:[], contact:null,
+          crm:{stage:'requested', history:[{date:today,from:'new',to:'requested',note:'bulk-request submitted'}],
+               next_action:'wait for Response email', next_action_due:'', closed_reason:'', notes:''}
+        });
+        missing.push(regno);
+      } else {
+        var prev=(found.crm&&found.crm.stage)||'interest';
+        if(!found.crm)found.crm={stage:'interest',history:[],next_action:'',next_action_due:'',closed_reason:'',notes:''};
+        found.crm.history=found.crm.history||[];
+        found.crm.history.push({date:today,from:prev,to:'requested',note:'bulk-request submitted'});
+        found.crm.stage='requested';
+        found.crm.next_action='wait for Response email';
+      }
+      marked++;
+    });
+    var newContent=JSON.stringify(db,null,2)+'\\n';
+    await ghPutFile('data/profiles.json', newContent, file.sha, 'Bulk-request: '+ids.length+' profiles marked as Requested');
+    // Update in-memory
+    P=db.profiles;
+    closeBulk();
+    stats();render();
+    // Copy IDs to clipboard
+    try{await navigator.clipboard.writeText(ids.join('\\n'));}catch(e){}
+    // Show post-submit instructions
+    var msg='✓ Saved. '+ids.length+' marked as Requested.';
+    if(missing.length)msg+=' ('+missing.length+' new stubs added.)';
+    msg+=' IDs copied to clipboard. Opening the Response form now — paste IDs into fields, solve CAPTCHA, submit.';
+    toast(msg,'ok');
+    setTimeout(function(){window.open('https://www.anandmaratha.com/response.php','_blank');},400);
+  }catch(e){
+    status.textContent='Error: '+e.message;status.style.color='#c0392b';
+    console.error(e);
+  }
+  btn.disabled=false;btn.textContent='Submit & open form →';
+}
+
 function currentView(){return localStorage.getItem('am_view')||'card';}
 function setView(v){localStorage.setItem('am_view',v);Array.prototype.forEach.call(document.querySelectorAll('#viewtog button'),function(b){b.classList.toggle('on',b.getAttribute('data-v')===v);});render();}
 
@@ -810,8 +922,8 @@ function populateSources(){
     if(s&&!seen[s]){seen[s]=1;var o=document.createElement('option');o.value=s;o.textContent='Source: '+s;sel.appendChild(o);}
   });
 }
-var STAGE_LABEL={new:'New',interest:'Interest',contact:'Contact',talking:'Talking',meeting:'Meeting',considering:'Considering','closed-yes':'Closed yes','closed-no':'Closed no'};
-var STAGE_ORDER=['new','interest','contact','talking','meeting','considering','closed-yes','closed-no'];
+var STAGE_LABEL={new:'New',interest:'Interest',requested:'Requested',contact:'Contact',talking:'Talking',meeting:'Meeting',considering:'Considering','closed-yes':'Closed yes','closed-no':'Closed no'};
+var STAGE_ORDER=['new','interest','requested','contact','talking','meeting','considering','closed-yes','closed-no'];
 
 function stageOf(p){return (p.crm&&p.crm.stage)||'interest';}
 
