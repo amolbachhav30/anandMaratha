@@ -4,7 +4,7 @@
 Profile data is AES-256-GCM encrypted with the passcode (PBKDF2-HMAC-SHA256, 250k iters).
 The passcode is NOT shipped — only encrypted ciphertext + salt + IV.
 """
-import json, os, datetime, base64, secrets
+import json, os, re, datetime, base64, secrets
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -17,6 +17,41 @@ PBKDF2_ITERS = 250000
 
 with open(DATA, encoding="utf-8") as f:
     db = json.load(f)
+
+
+def _normalize_phones(db):
+    """Defensive cleanup at build time. The JS card renderer expects
+    contact.phones to be a string; an upstream agent occasionally writes
+    a list. Coerce to a comma-joined string, dedupe by digit-only form,
+    drop entries with <7 digits (junk like '91--')."""
+    for p in db.get("profiles", []):
+        c = p.get("contact")
+        if not isinstance(c, dict):
+            continue
+        ph = c.get("phones")
+        if isinstance(ph, list):
+            parts = ph
+        elif isinstance(ph, str):
+            parts = [s.strip() for s in ph.split(",") if s.strip()]
+        else:
+            c["phones"] = ""
+            continue
+        seen, out = set(), []
+        for x in parts:
+            x = str(x).strip()
+            digits = re.sub(r"\D", "", x)
+            if len(digits) < 7:
+                continue
+            norm = digits.lstrip("0")
+            if norm in seen:
+                continue
+            seen.add(norm)
+            out.append(x)
+        c["phones"] = ", ".join(out)
+    return db
+
+
+db = _normalize_phones(db)
 
 updated = datetime.datetime.now().strftime("%d %b %Y, %I:%M %p")
 data_js = json.dumps(db, ensure_ascii=False)
