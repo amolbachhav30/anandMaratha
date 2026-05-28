@@ -27856,10 +27856,16 @@
             "from": "new",
             "to": "contact",
             "note": "bulk-response contact received"
+          },
+          {
+            "date": "2026-05-28",
+            "from": "contact",
+            "to": "contact",
+            "note": "Girls phone number"
           }
         ],
-        "next_action": "",
-        "next_action_due": "",
+        "next_action": "Amol shall call.",
+        "next_action_due": "2026-05-30",
         "closed_reason": "",
         "notes": ""
       }
