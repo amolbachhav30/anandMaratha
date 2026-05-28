@@ -537,15 +537,24 @@ function card(p){
   var contactedTag=p.contact?"<span class='contacted'>✓ CONTACT</span>":"";
   var contactHtml;
   if(p.contact){
-    var c=p.contact;
-    var firstPhone=(c.phones||"").split(",")[0].trim();
-    contactHtml="<div class='contact-compact'><b>"+esc(c.name||"contact")+"</b>"+
-      (firstPhone?" · <a href='tel:"+esc(firstPhone)+"'>📞 "+esc(firstPhone)+"</a>":"")+
+    var c=p.contact, phones=(c.phones||"").split(",").map(function(x){x=x.trim();return x?"<a href='tel:"+x+"'>"+x+"</a>":"";}).filter(Boolean).join(", ");
+    contactHtml="<div class='contact'><h4>Contact Details</h4>"+
+      "<div><b>"+esc(c.name||"")+"</b></div>"+
+      (c.address?"<div>"+esc(c.address)+"</div>":"")+
+      (phones?"<div>📞 "+phones+"</div>":"")+
+      (c.email?"<div>📧 <a href='mailto:"+esc(c.email)+"'>"+esc(c.email)+"</a></div>":"")+
       "</div>";
   } else {
     var sb=statusBox(p);
     contactHtml=sb||"<div class='nocontact'>No contact yet. Click <b>Express interest</b> to open the profile and tap <b>INTERESTED</b>.</div>";
   }
+  var detailsBlock = (p.details&&p.details.length || p.family&&p.family.length || p.expectation&&p.expectation.length)
+    ? "<details><summary>Full profile, family &amp; expectations</summary>"+
+        (p.details&&p.details.length ? "<div class='sec'><h4>Profile Details</h4>"+kvtable(p.details)+"</div>" : "")+
+        (p.family&&p.family.length ? "<div class='sec'><h4>Family Background</h4>"+kvtable(p.family)+"</div>" : "")+
+        (p.expectation&&p.expectation.length ? "<div class='sec'><h4>Expectation</h4>"+kvtable(p.expectation)+"</div>" : "")+
+      "</details>"
+    : "";
   var srcTag=p.source?"<span class='src'>"+esc(p.source)+"</span>":"";
   var matchBadge=(p.match>0)?"<span class='badge'>"+p.match+"% match</span>":"";
   var displayName=p.surname?esc(p.surname):esc(p.regno);
@@ -560,7 +569,8 @@ function card(p){
       (chips.length?"<div class='chips'>"+chips.map(function(c){return "<span class='chip'>"+esc(c)+"</span>";}).join("")+"</div>":"")+
       (oc?"<div style='font-size:13px;margin-bottom:8px'>💼 "+esc(oc)+"</div>":"")+
       (p.message?"<div style='font-size:13px;background:#f6f2ed;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-style:italic;color:var(--brown2)'>💬 "+esc(p.message)+"</div>":"")+
-      (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+"</div>":"")+
+      (p.gun?"<div class='gun' title='"+esc(p.gunBreak)+"'>★ Gun Milan: "+esc(p.gun)+" <span style='color:var(--muted)'>(hover for breakdown)</span></div>":"")+
+      detailsBlock+
       contactHtml+
       "<div class='actions'><button class='btn-more' data-regno='"+esc(p.regno)+"'>View details</button><a class='btn primary' href='"+p.link+"' target='_blank'>Open live →</a></div>"+
     "</div></div>";
