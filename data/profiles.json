@@ -27726,16 +27726,22 @@
         "email": "amrutapatil208@gmail.com"
       },
       "crm": {
-        "stage": "contact",
+        "stage": "requested",
         "history": [
           {
             "date": "2026-05-28",
             "from": "new",
             "to": "contact",
             "note": "bulk-response contact received"
+          },
+          {
+            "date": "2026-06-01",
+            "from": "contact",
+            "to": "requested",
+            "note": "bulk-request submitted"
           }
         ],
-        "next_action": "",
+        "next_action": "wait for Response email",
         "next_action_due": "",
         "closed_reason": "",
         "notes": ""
@@ -27994,6 +28000,312 @@
           }
         ],
         "next_action": "",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147795",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG148596",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG148599",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG148605",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147947",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147655",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147680",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147703",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
+        "next_action_due": "",
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG147693",
+      "surname": "",
+      "mgid": "",
+      "source": "Anand Maratha",
+      "link": "https://www.anandmaratha.com/",
+      "match": 0,
+      "gun": "",
+      "gunBreak": "",
+      "photos": [],
+      "firstSeen": "2026-06-01",
+      "direction": "sent",
+      "status": "pending",
+      "statusDate": "2026-06-01",
+      "details": [],
+      "family": [],
+      "expectation": [],
+      "contact": null,
+      "crm": {
+        "stage": "requested",
+        "history": [
+          {
+            "date": "2026-06-01",
+            "from": "new",
+            "to": "requested",
+            "note": "bulk-request submitted"
+          }
+        ],
+        "next_action": "wait for Response email",
         "next_action_due": "",
         "closed_reason": "",
         "notes": ""
