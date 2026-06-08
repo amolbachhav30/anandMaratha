@@ -373,10 +373,14 @@ HTML = """<!DOCTYPE html>
     </div>
     <div class="mbody">
       <p style="font-size:13px;color:var(--muted);margin:0 0 10px">Enter up to 10 Anand Maratha regnos (MGxxxxxx). Separator can be a <b>new line, space, tab, or comma</b> — any mix works. Letters are auto-uppercased.</p>
-      <div style="background:#fff8e6;border:1px solid #ecd99a;border-radius:8px;padding:10px 12px;font-size:12px;margin:0 0 14px;color:#876d12">
-        <b>One-time setup for fast form-fill:</b> drag this link to your bookmarks bar →
-        <a id="amFillLink" style="background:var(--brown);color:#fff;text-decoration:none;padding:3px 9px;border-radius:6px;font-weight:600;font-size:11px;margin:0 4px;cursor:move" draggable="true">📥 AM Bulk Fill</a>
-        Then after Submit, click that bookmark on the form page → all fields auto-fill. You only solve the CAPTCHA + submit.
+      <div style="background:#fff8e6;border:1px solid #ecd99a;border-radius:8px;padding:10px 12px;font-size:12px;margin:0 0 14px;color:#876d12;line-height:1.5">
+        <b>One-time setup (~30 seconds):</b>
+        <ol style="margin:6px 0 6px 18px;padding:0">
+          <li>Show your browser's bookmarks bar: <b>Cmd+Shift+B</b> (Mac) or <b>Ctrl+Shift+B</b> (PC)</li>
+          <li><b>Drag this brown button onto the bookmarks bar</b> (don't click — drag):
+            <br><a id="amFillLink" style="display:inline-block;background:var(--brown);color:#fff;text-decoration:none;padding:5px 12px;border-radius:6px;font-weight:600;font-size:12px;margin:6px 0;cursor:move" draggable="true" onclick="event.preventDefault();alert('Drag this button onto your bookmarks bar (don\\'t click it here). After Submit, click the bookmark in your bookmarks bar on the form page to auto-fill.')">📥 AM Bulk Fill</a></li>
+          <li>Done. Then any future Submit → click that bookmark on the form page → fields auto-fill. You only solve CAPTCHA + Submit.</li>
+        </ol>
       </div>
       <p style="font-size:12px;color:var(--muted);margin:0 0 14px">Suggested from your <b>Interest</b>-stage Anand Maratha profiles below. Click any to add it.</p>
       <div id="bulkSuggest" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;max-height:120px;overflow-y:auto;"></div>
@@ -846,8 +850,8 @@ document.addEventListener('click',async function(e){
 document.getElementById('gearBtn').addEventListener('click',openSettings);
 
 // ---------- Bulk request flow ----------
-// The bookmarklet source — kept short so the encoded URL fits in a bookmark.
-var AM_FILL_JS = "(function(){var p=new URLSearchParams(location.hash.slice(1));var f=function(s,v){var e=document.querySelector(s);if(e&&v)e.value=v;};f('input[name=reg_no]',p.get('regno'));f('input[name=email]',p.get('email'));var ids=(p.get('reg')||'').split(',').filter(Boolean);document.querySelectorAll('input[name=\\\"reg[]\\\"]').forEach(function(el,i){if(ids[i])el.value=ids[i];});var c=document.querySelector('input[name=consent]');if(c)c.checked=true;var v=document.querySelector('input[name=verify]');if(v)v.focus();})();";
+// The bookmarklet source. Defensive: checks page, shows count, fires input events.
+var AM_FILL_JS = "(function(){if(!/anandmaratha\\.com\\/response\\.php/.test(location.href)){alert('AM Bulk Fill: open this on the Anand Maratha Response form page (response.php), not here.');return;}var p=new URLSearchParams(location.hash.slice(1));if(!p.get('reg')){alert('AM Bulk Fill: no IDs in URL hash. Submit again from the dashboard and click this bookmark on the form page that opens.');return;}var n=0;var fire=function(e){e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));};var f=function(s,v){var e=document.querySelector(s);if(e&&v){e.value=v;fire(e);n++;}};f('input[name=reg_no]',p.get('regno'));f('input[name=email]',p.get('email'));var ids=(p.get('reg')||'').split(',').filter(Boolean);document.querySelectorAll('input[name=\\\"reg[]\\\"]').forEach(function(el,i){if(ids[i]){el.value=ids[i];fire(el);n++;}});var c=document.querySelector('input[name=consent]');if(c){c.checked=true;fire(c);n++;}var v=document.querySelector('input[name=verify]');if(v)v.focus();alert('AM Bulk Fill: filled '+n+' fields. Now read the CAPTCHA, type it, and click Submit.');})();";
 
 function setupBookmarkletLink(){
   var a=document.getElementById('amFillLink');
@@ -942,11 +946,19 @@ async function submitBulk(){
              '&email='+encodeURIComponent('amolbachhav@gmail.com')+
              '&reg='+encodeURIComponent(ids.join(','));
     var url='https://www.anandmaratha.com/response.php#'+hash;
-    var msg='✓ Saved. '+ids.length+' marked as Requested.';
-    if(missing.length)msg+=' ('+missing.length+' new stubs added.)';
-    msg+=' Opening form — click your AM Bulk Fill bookmark there to auto-fill.';
-    toast(msg,'ok');
-    setTimeout(function(){window.open(url,'_blank');},400);
+    closeBulk();
+    stats();render();
+    // Big follow-up alert with explicit click-the-bookmark instruction
+    var msg='✓ Saved '+ids.length+' as Requested. ';
+    if(missing.length)msg+='('+missing.length+' new stubs added.) ';
+    setTimeout(function(){
+      window.open(url,'_blank');
+      setTimeout(function(){
+        alert('Form opened in a new tab.\\n\\nNext step: switch to that tab, then click your "📥 AM Bulk Fill" bookmark in your bookmarks bar — all 12 fields will auto-fill.\\n\\nThen just solve the CAPTCHA and click Submit.\\n\\n(If nothing happens when you click the bookmark, it might not be installed. Come back here and drag the brown button onto your bookmarks bar first.)');
+      },800);
+    },300);
+    toast(msg+'Opening form…','ok');
+    return;
   }catch(e){
     status.textContent='Error: '+e.message;status.style.color='#c0392b';
     console.error(e);
