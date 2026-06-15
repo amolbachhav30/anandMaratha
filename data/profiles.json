@@ -28648,6 +28648,271 @@
         "closed_reason": "",
         "notes": ""
       }
+    },
+    {
+      "regno": "MG149355",
+      "surname": "Aruna",
+      "source": "Anand Maratha",
+      "match": 83,
+      "gun": "26.5/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "ARUNA POPAT BOTHE",
+        "address": "WALKI A. NAGAR",
+        "phones": "9373175475",
+        "email": "bothearuna24@gmail.com"
+      },
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Profile NOT Interested email received"
+          }
+        ],
+        "closed_reason": "They said not interested",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149374",
+      "surname": "Shraddha",
+      "source": "Anand Maratha",
+      "match": 69,
+      "gun": "17.5/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "SHRADDHA RAVINDRA DEORE",
+        "address": "NAVI MUMBAI",
+        "phones": "8655460191, 9082768600",
+        "email": "snehadevare@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149335",
+      "surname": "Reshma",
+      "source": "Anand Maratha",
+      "match": 78,
+      "gun": "15/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "RESHMA MAHADEV PATIL",
+        "address": "AT.POST.WAGHOLI,TA:DIST.DHARASHIV, PIN CODE-413501",
+        "phones": "9421357702, 9803040590",
+        "email": "reshmapatil94233@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149312",
+      "surname": "Manali",
+      "source": "Anand Maratha",
+      "match": 87,
+      "gun": "26.5/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "MANALI PRASHANT TAWDE",
+        "address": "SANTA CLARA, CALIFORNIA, USA",
+        "phones": "9960276623, +1 (714)686 5841, 022 25478929, 9766771903",
+        "email": "prashanttawde52@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149308",
+      "surname": "Ashwini",
+      "source": "Anand Maratha",
+      "match": 68,
+      "gun": "21/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "ASHWINI NAMDEV JAGTAP",
+        "address": "TALEGAON DABHADE, PUNE, 410507",
+        "phones": "9762500705",
+        "email": "a.jagtap96@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149262",
+      "surname": "Rutuja",
+      "source": "Anand Maratha",
+      "match": 78,
+      "gun": "14/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "RUTUJA KESHAVRAO HAREL PATIL",
+        "address": "",
+        "phones": "7875664446, 9423842312",
+        "email": "rutujaharel9693@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149198",
+      "surname": "Sayali",
+      "source": "Anand Maratha",
+      "match": 87,
+      "gun": "20.5/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "SAYALI SAYAJIRAO GHORPADE",
+        "address": "9, SUVARANA APARTMENT, BEHIND GAGAN GARIMA SOCIETY, NEAR KHADKI RAILWAY STATION (W), PUNE 20",
+        "phones": "8888832900, 9822845873",
+        "email": "vsghorpade64@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149110",
+      "surname": "Komal",
+      "source": "Anand Maratha",
+      "match": 79,
+      "gun": "15.5/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "KOMAL SHIVAJIRAO SHINDE",
+        "address": "AMBIKA NAGAR, NANDED",
+        "phones": "9423438309, 9420912638",
+        "email": "k.s.shinde82@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
+    },
+    {
+      "regno": "MG149276",
+      "surname": "Smita",
+      "source": "Anand Maratha",
+      "match": 79,
+      "gun": "22/36",
+      "firstSeen": "2026-06-15",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "SMITA PANDURANG TALWADKAR",
+        "address": "D NO. 9-116/4/1 LAKSHMI NAGAR COLONY (HUDA LAYOUT) BODUPPAL, HYDERABAD-500092 TELANGANA",
+        "phones": "7732946307, 9398376886",
+        "email": "govindh1965@gmail.com"
+      },
+      "crm": {
+        "stage": "contact",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-15T03:34:36Z",
+            "event": "Contact details received (bulk response)"
+          }
+        ],
+        "closed_reason": "",
+        "notes": ""
+      }
     }
   ]
 }
