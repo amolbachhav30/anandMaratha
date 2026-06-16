@@ -28785,16 +28785,21 @@
         "email": "a.jagtap96@gmail.com"
       },
       "crm": {
-        "stage": "contact",
+        "stage": "closed-no",
         "next_action": "",
         "next_action_due": "",
         "history": [
           {
             "date": "2026-06-15T03:34:36Z",
             "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-16",
+            "note": "Declined: They said not interested",
+            "stage": "closed-no"
           }
         ],
-        "closed_reason": "",
+        "closed_reason": "They said not interested",
         "notes": ""
       }
     },
@@ -28843,16 +28848,21 @@
         "email": "vsghorpade64@gmail.com"
       },
       "crm": {
-        "stage": "contact",
+        "stage": "closed-no",
         "next_action": "",
         "next_action_due": "",
         "history": [
           {
             "date": "2026-06-15T03:34:36Z",
             "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-16",
+            "note": "Declined: They said not interested — Location does not match",
+            "stage": "closed-no"
           }
         ],
-        "closed_reason": "",
+        "closed_reason": "They said not interested — Location does not match",
         "notes": ""
       }
     },
