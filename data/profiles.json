@@ -28819,16 +28819,21 @@
         "email": "rutujaharel9693@gmail.com"
       },
       "crm": {
-        "stage": "contact",
+        "stage": "closed-no",
         "next_action": "",
         "next_action_due": "",
         "history": [
           {
             "date": "2026-06-15T03:34:36Z",
             "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-18T03:34:32Z",
+            "event": "stage changed from contact to closed-no",
+            "note": "They said not interested"
           }
         ],
-        "closed_reason": "",
+        "closed_reason": "They said not interested",
         "notes": ""
       }
     },
@@ -28882,16 +28887,21 @@
         "email": "k.s.shinde82@gmail.com"
       },
       "crm": {
-        "stage": "contact",
+        "stage": "closed-no",
         "next_action": "",
         "next_action_due": "",
         "history": [
           {
             "date": "2026-06-15T03:34:36Z",
             "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-18T03:34:32Z",
+            "event": "stage changed from contact to closed-no",
+            "note": "They said not interested"
           }
         ],
-        "closed_reason": "",
+        "closed_reason": "They said not interested",
         "notes": ""
       }
     },
