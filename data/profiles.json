@@ -28933,6 +28933,39 @@
         "closed_reason": "",
         "notes": ""
       }
+    },
+    {
+      "regno": "MG149406",
+      "surname": "Nayan",
+      "source": "Anand Maratha",
+      "match": 83,
+      "gun": "26/36",
+      "firstSeen": "2026-06-19",
+      "direction": "sent",
+      "status": "accepted",
+      "contact": {
+        "name": "NAYAN ABA DHAPATE",
+        "address": "S.N32 FLAT NO 301,SAI-PRASAD APT, KALMKAR VASTI , NEAR PANCARD ROAD,BANER.411045",
+        "phones": "9762248853, 9423589601",
+        "email": "nayandhapate@gmail.com"
+      },
+      "crm": {
+        "stage": "closed-no",
+        "next_action": "",
+        "next_action_due": "",
+        "history": [
+          {
+            "date": "2026-06-19T03:36:48Z",
+            "event": "Contact details received (bulk response)"
+          },
+          {
+            "date": "2026-06-19T03:36:48Z",
+            "event": "Profile NOT Interested email received"
+          }
+        ],
+        "closed_reason": "They said not interested",
+        "notes": ""
+      }
     }
   ]
 }
